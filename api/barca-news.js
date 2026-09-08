@@ -103,13 +103,13 @@ async function fetchRomero() {
   }
 }
 
-async function translateToPersian(text) {
+async function translateToPersian(text, sourceLang = 'es') {
   if (!text) return text;
   try {
     const res = await fetch(
       `https://api.mymemory.translated.net/get?q=${encodeURIComponent(
         text
-      )}&langpair=en|fa`,
+      )}&langpair=${sourceLang}|fa`,
       { signal: AbortSignal.timeout(5000) }
     );
     const data = await res.json();
