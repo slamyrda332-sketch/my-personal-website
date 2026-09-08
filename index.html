@@ -3,12 +3,21 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>پورتفولیوی شخصی | نوجوان علاقه‌مند به تکنولوژی و فوتبال</title>
-<meta name="description" content="وب‌سایت شخصی — تکنولوژی، هوش مصنوعی، فوتبال، Barcelona و پروژه‌های در حال یادگیری">
+
+<!-- ============ SEO & GOOGLE METATAGS ============ -->
+<title>سامیار سلامی | پورتفولیوی شخصی</title>
+<meta name="description" content="وب‌سایت شخصی سامیار سلامی — تکنولوژی، برنامه‌نویسی پایتون، هوش مصنوعی، اکوسیستم اپل، فوتبال و FC Barcelona.">
+<meta name="author" content="سامیار سلامی">
+<meta name="robots" content="index, follow">
+
+<!-- کد تایید مالکیت گوگل سرچ کنسول (کدی که سرچ کنسول بهت میده رو اینجا بذار) -->
+<!-- <meta name="google-site-verification" content="کد_شما_اینجا" /> -->
+
 <meta name="theme-color" content="#0a0d13">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+
 <style>
 /* ============ TOKENS ============ */
 :root {
@@ -716,15 +725,6 @@ opacity: .65;
 border: 1px dashed var(--border-strong);
 border-radius: 20px;
 }
-.barca-news-error {
-color: var(--garnet);
-}
-.barca-news-updated {
-margin-top: 12px;
-color: var(--text-faint);
-font-size: 12px;
-text-align: center;
-}
 @media (max-width: 900px) {
 .barca-news-grid {
 grid-template-columns: 1fr 1fr;
@@ -910,33 +910,6 @@ grid-template-columns: 1fr 1fr;
 grid-template-columns: 1fr;
 }
 }
-/* ============ HOBBIES ============ */
-.hobby-strip {
-display: flex;
-gap: 16px;
-overflow-x: auto;
-padding-bottom: 8px;
-scrollbar-width: thin;
-}
-.hobby-card {
-flex: 0 0 220px;
-background: var(--surface);
-border: 1px solid var(--border);
-border-radius: var(--radius-md);
-padding: 22px;
-}
-.hobby-card .bento-icon {
-margin-bottom: 10px;
-}
-.hobby-card h4 {
-font-size: 1rem;
-margin-bottom: 6px;
-}
-.hobby-card p {
-color: var(--text-muted);
-font-size: 0.88rem;
-margin: 0;
-}
 /* ============ FAVORITES ============ */
 .fav-grid {
 display: grid;
@@ -1050,7 +1023,7 @@ transform: translateY(0);
 <div class="navbar-inner">
 <a href="#home" class="brand">
 <span class="brand-mark">S</span>
-<span class="brand-name">پورتفولیو</span>
+<span class="brand-name">پورتفولیو سامیار</span>
 </a>
 
 <ul class="nav-links">
@@ -1112,7 +1085,7 @@ transform: translateY(0);
 </span>
 
 <h1 class="hero-enter d2">
-سلام! 👋 من یک نوجوان علاقه‌مند به تکنولوژی، فوتبال و دنیای هوش مصنوعی‌ام.
+سلام! 👋 من سامیار سلامی هستم؛ علاقه‌مند به تکنولوژی، فوتبال و دنیای هوش مصنوعی.
 </h1>
 
 <p class="lead hero-enter d3">
@@ -1338,12 +1311,16 @@ rel="noopener noreferrer"
 </div>
 
 <div class="barca-news-grid" id="barcaNewsGrid">
-<div class="barca-news-status">
-در حال دریافت آخرین اخبار بارسا... ⚽
+<div class="barca-news-card">
+<div class="barca-news-meta">
+<span class="barca-news-tag">اخبار باشگاه</span>
+<span>رسمی</span>
+</div>
+<h3>آماده‌سازی بارسلونا برای مسابقات بعدی</h3>
+<p>تیم بارسلونا با تمرکز بر تاکتیک‌های هوشمندانه در حال پیگیری تمرینات فشرده خود است.</p>
+<a class="barca-news-link" href="https://www.fcbarcelona.com/en/football/first-team/news" target="_blank">مشاهده بیشتر ↗</a>
 </div>
 </div>
-
-<div class="barca-news-updated" id="barcaNewsUpdated"></div>
 </div>
 </section>
 
@@ -1365,7 +1342,7 @@ rel="noopener noreferrer"
 <span class="dash-status">هر روز</span>
 </div>
 <h4>Apple Ecosystem</h4>
-<p>iPad، Mac و باقی دستگاه‌های Apple، بخشی از روتین روزانه‌ام هستند.</p>
+<p>iPad، iPhone و باقی دستگاه‌های Apple، بخشی از روتین روزانه‌ام هستند.</p>
 </div>
 
 <div class="dash-card">
@@ -1416,53 +1393,6 @@ rel="noopener noreferrer"
 </div>
 </section>
 
-<!-- ============ LEARNING ============ -->
-<section class="section" id="learning">
-<div class="wrap">
-<div class="section-head reveal">
-<span class="section-kicker">یادگیری</span>
-<h2>چیزهایی که در حال یادگیری هستم</h2>
-</div>
-
-<div class="learning-list reveal">
-<div class="learn-row">
-<span class="learn-icon">🐍</span>
-<span class="learn-name">Python</span>
-<span class="learn-note">یادگیری از طریق تمرین و پروژه‌های کوچک</span>
-<span class="learn-badge active">در حال یادگیری</span>
-</div>
-
-<div class="learn-row">
-<span class="learn-icon">💻</span>
-<span class="learn-name">برنامه‌نویسی</span>
-<span class="learn-note">آشنایی بیشتر با منطق و ساختار کدنویسی</span>
-<span class="learn-badge active">در حال یادگیری</span>
-</div>
-
-<div class="learn-row">
-<span class="learn-icon">🗣️</span>
-<span class="learn-name">English</span>
-<span class="learn-note">تقویت زبان برای فهم بهتر منابع تکنولوژی</span>
-<span class="learn-badge started">تازه شروع کرده‌ام</span>
-</div>
-
-<div class="learn-row">
-<span class="learn-icon">💡</span>
-<span class="learn-name">تکنولوژی</span>
-<span class="learn-note">دنبال کردن اخبار و ابزارهای جدید</span>
-<span class="learn-badge active">در حال یادگیری</span>
-</div>
-
-<div class="learn-row">
-<span class="learn-icon">🤖</span>
-<span class="learn-name">هوش مصنوعی</span>
-<span class="learn-note">فهم مفاهیم پایه‌ای AI و نحوه کارکردش</span>
-<span class="learn-badge started">تازه شروع کرده‌ام</span>
-</div>
-</div>
-</div>
-</section>
-
 <!-- ============ PROJECTS ============ -->
 <section class="section" id="projects">
 <div class="wrap">
@@ -1482,47 +1412,15 @@ rel="noopener noreferrer"
 </div>
 
 <div class="project-card placeholder">
-<p>پروژه بعدی به‌زودی اینجا اضافه می‌شود ✦</p>
+<span class="project-status soon">به‌زودی</span>
+<h4>پروژه‌های Python</h4>
+<p>اسکریپت‌ها و ابزارهای کوچک برنامه‌نویسی که به مرور اضافه می‌شوند.</p>
 </div>
 
 <div class="project-card placeholder">
-<p>جای خالی برای یک ایده جدید ✦</p>
-</div>
-</div>
-</div>
-</section>
-
-<!-- ============ HOBBIES ============ -->
-<section class="section" id="hobbies">
-<div class="wrap">
-<div class="section-head reveal">
-<span class="section-kicker">سرگرمی‌ها</span>
-<h2>وقتی از جلوی صفحه بلند می‌شوم</h2>
-</div>
-
-<div class="hobby-strip reveal">
-<div class="hobby-card">
-<div class="bento-icon">🎮</div>
-<h4>Roblox و بازی</h4>
-<p>ساعت‌ها بازی و کشف دنیاهای مختلف Roblox.</p>
-</div>
-
-<div class="hobby-card">
-<div class="bento-icon">⚽</div>
-<h4>فوتبال</h4>
-<p>هم بازی کردن، هم دنبال کردن Barcelona.</p>
-</div>
-
-<div class="hobby-card">
-<div class="bento-icon">🎵</div>
-<h4>تنبک</h4>
-<p>نواختن تنبک، یک سرگرمی آرامش‌بخش.</p>
-</div>
-
-<div class="hobby-card">
-<div class="bento-icon">🎬</div>
-<h4>فیلم و سریال</h4>
-<p>مارتون کردن فیلم و سریال‌های موردعلاقه‌ام.</p>
+<span class="project-status soon">به‌زودی</span>
+<h4>پروژه هوش مصنوعی</h4>
+<p>یک ابزار کاربردی متصل به مدل‌های هوش مصنوعی.</p>
 </div>
 </div>
 </div>
@@ -1532,39 +1430,34 @@ rel="noopener noreferrer"
 <section class="section" id="favorites">
 <div class="wrap">
 <div class="section-head reveal">
-<span class="section-kicker">Favorite Things</span>
-<h2>چیزهای مورد علاقه‌ام، خلاصه شده</h2>
+<span class="section-kicker">محبوب‌ترین‌ها</span>
+<h2>چیزهایی که دوست دارم</h2>
 </div>
-
 <div class="fav-grid reveal">
 <div class="fav-card">
-<div class="fav-emoji">⚽</div>
-<div class="fav-label">Favorite Sport</div>
-<div class="fav-value">Football</div>
-</div>
-
-<div class="fav-card">
-<div class="fav-emoji">🔵🔴</div>
-<div class="fav-label">Favorite Club</div>
-<div class="fav-value">FC Barcelona</div>
-</div>
-
-<div class="fav-card">
 <div class="fav-emoji">🐐</div>
-<div class="fav-label">Favorite Player</div>
+<div class="fav-label">بازیکن موردعلاقه</div>
 <div class="fav-value">Lionel Messi</div>
 </div>
-
 <div class="fav-card">
-<div class="fav-emoji">🍎</div>
-<div class="fav-label">Favorite Tech Ecosystem</div>
-<div class="fav-value">Apple</div>
+<div class="fav-emoji">⚽</div>
+<div class="fav-label">تیم فوتبال</div>
+<div class="fav-value">FC Barcelona</div>
 </div>
-
 <div class="fav-card">
 <div class="fav-emoji">🐍</div>
-<div class="fav-label">Learning to Love</div>
+<div class="fav-label">زبان برنامه‌نویسی</div>
 <div class="fav-value">Python</div>
+</div>
+<div class="fav-card">
+<div class="fav-emoji">🍎</div>
+<div class="fav-label">برند تکنولوژی</div>
+<div class="fav-value">Apple</div>
+</div>
+<div class="fav-card">
+<div class="fav-emoji">🎵</div>
+<div class="fav-label">ساز موردعلاقه</div>
+<div class="fav-value">تنبک</div>
 </div>
 </div>
 </div>
@@ -1574,17 +1467,12 @@ rel="noopener noreferrer"
 <section class="section" id="contact">
 <div class="wrap">
 <div class="contact-box reveal">
-<h2>بزودی راه‌های ارتباطی اضافه می‌شود</h2>
-
-<p>
-این بخش برای شبکه‌های اجتماعی و راه‌های تماس آینده در نظر گرفته شده —
-به‌زودی این‌جا تکمیل می‌شود.
-</p>
-
+<h2>ارتباط با سامیار</h2>
+<p>اگر دوست داری درباره تکنولوژی، برنامه‌نویسی یا فوتبال صحبت کنیم، خوشحال می‌شم!</p>
 <div class="social-slots">
-<div class="social-slot">＋</div>
-<div class="social-slot">＋</div>
-<div class="social-slot">＋</div>
+<div class="social-slot">🌐</div>
+<div class="social-slot">💻</div>
+<div class="social-slot">📧</div>
 </div>
 </div>
 </div>
@@ -1594,200 +1482,61 @@ rel="noopener noreferrer"
 <footer>
 <div class="wrap footer-inner">
 <div class="brand">
-<span class="brand-mark" style="width:28px;height:28px;font-size:0.8rem;">S</span>
-پورتفولیو
+<span class="brand-mark">S</span>
+<span class="brand-name">پورتفولیوی سامیار سلامی</span>
 </div>
-
-<span class="footer-tag">
-ساخته‌شده با علاقه به تکنولوژی 🚀
-</span>
+<div class="footer-tag">طراحی و توسعه داده‌شده با عشق به تکنولوژی و فوتبال ⚽</div>
 </div>
 </footer>
 
+<!-- ============ JAVASCRIPT ============ -->
 <script>
-// =========================================================
-// THEME TOGGLE
-// =========================================================
-const themeToggle = document.getElementById('themeToggle');
-const moonIcon = document.getElementById('themeIconMoon');
-const sunIcon = document.getElementById('themeIconSun');
-const body = document.body;
+// Theme Toggle
+const themeToggleBtn = document.getElementById('themeToggle');
+const themeIconMoon = document.getElementById('themeIconMoon');
+const themeIconSun = document.getElementById('themeIconSun');
 
-function setTheme(theme) {
-body.setAttribute('data-theme', theme);
-
-if (theme === 'light') {
-moonIcon.style.display = 'none';
-sunIcon.style.display = 'block';
-} else {
-moonIcon.style.display = 'block';
-sunIcon.style.display = 'none';
-}
-}
-
-let currentTheme = 'dark';
-themeToggle.addEventListener('click', () => {
-currentTheme = currentTheme === 'dark' ? 'light' : 'dark';
-setTheme(currentTheme);
+themeToggleBtn.addEventListener('click', () => {
+  const currentTheme = document.body.getAttribute('data-theme');
+  const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+  document.body.setAttribute('data-theme', newTheme);
+  
+  themeIconMoon.style.display = newTheme === 'dark' ? 'block' : 'none';
+  themeIconSun.style.display = newTheme === 'dark' ? 'none' : 'block';
 });
 
-// =========================================================
-// MOBILE MENU
-// =========================================================
+// Mobile Menu
 const hamburger = document.getElementById('hamburger');
 const mobileMenu = document.getElementById('mobileMenu');
 
 hamburger.addEventListener('click', () => {
-hamburger.classList.toggle('open');
-mobileMenu.classList.toggle('open');
+  hamburger.classList.toggle('open');
+  mobileMenu.classList.toggle('open');
 });
 
-mobileMenu.querySelectorAll('a').forEach(a => {
-a.addEventListener('click', () => {
-hamburger.classList.remove('open');
-mobileMenu.classList.remove('open');
-});
-});
-
-// =========================================================
-// BARÇA NEWS
-// =========================================================
-const barcaNewsGrid = document.getElementById('barcaNewsGrid');
-const barcaNewsUpdated = document.getElementById('barcaNewsUpdated');
-
-function escapeHtml(value) {
-return String(value)
-.replace(/&/g, '&amp;')
-.replace(/</g, '&lt;')
-.replace(/>/g, '&gt;')
-.replace(/"/g, '&quot;')
-.replace(/'/g, '&#39;');
-}
-
-function formatNewsDate(dateString) {
-if (!dateString) return 'جدیدترین';
-
-const date = new Date(dateString);
-
-if (Number.isNaN(date.getTime())) {
-return 'جدیدترین';
-}
-
-return new Intl.DateTimeFormat('fa-IR', {
-year: 'numeric',
-month: 'short',
-day: 'numeric'
-}).format(date);
-}
-
-function renderBarcaNews(items) {
-if (!Array.isArray(items) || items.length === 0) {
-barcaNewsGrid.innerHTML = `
-<div class="barca-news-status barca-news-error">
-فعلاً خبری برای نمایش پیدا نشد. دوباره کمی بعد امتحان کن ⚽
-</div>
-`;
-return;
-}
-
-barcaNewsGrid.innerHTML = items
-.slice(0, 8)
-.map((item) => {
-const title = escapeHtml(item.title || 'خبر بارسلونا');
-const url = escapeHtml(item.url || 'https://www.fcbarcelona.com/en/football/first-team/news');
-const date = formatNewsDate(item.date || item.publishedAt);
-
-return `
-<article class="barca-news-card reveal in">
-<div class="barca-news-meta">
-<span class="barca-news-tag">FC Barcelona</span>
-<span>${date}</span>
-</div>
-
-<h3>${title}</h3>
-
-<p>
-جدیدترین اخبار بارسا را در سایت سامیار/samyar بخوان.
-</p>
-
-<a
-class="barca-news-link"
-href="${url}"
-target="_blank"
-rel="noopener noreferrer"
->
-ادامه خبر ↗
-</a>
-</article>
-`;
-})
-.join('');
-}
-
-function renderBarcaError() {
-barcaNewsGrid.innerHTML = `
-<div class="barca-news-status barca-news-error">
-دریافت اخبار بارسا در حال حاضر ممکن نیست 😕
-<br>
-<small>لینک اخبار رسمی بارسلونا همچنان در بالای این بخش در دسترس است.</small>
-</div>
-`;
-}
-
-async function loadBarcaNews() {
-try {
-const response = await fetch('/api/barca-news', {
-method: 'GET',
-cache: 'no-store',
-headers: {
-'Accept': 'application/json'
-}
+// Close mobile menu on click link
+document.querySelectorAll('.mobile-menu a').forEach(link => {
+  link.addEventListener('click', () => {
+    hamburger.classList.remove('open');
+    mobileMenu.classList.remove('open');
+  });
 });
 
-if (!response.ok) {
-throw new Error(`News API returned ${response.status}`);
-}
+// Scroll Reveal Animation
+const observerOptions = {
+  threshold: 0.15
+};
 
-const data = await response.json();
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('in');
+    }
+  });
+}, observerOptions);
 
-renderBarcaNews(data.items);
-
-if (data.updatedAt) {
-barcaNewsUpdated.textContent =
-'آخرین بررسی: ' + formatNewsDate(data.updatedAt);
-} else {
-barcaNewsUpdated.textContent = 'اخبار از منبع رسمی FC Barcelona دریافت می‌شوند.';
-}
-
-} catch (error) {
-console.error('Barça news error:', error);
-renderBarcaError();
-barcaNewsUpdated.textContent =
-'اتصال اخبار فعلاً در دسترس نیست.';
-}
-}
-
-// دریافت اخبار هنگام باز شدن سایت
-loadBarcaNews();
-// بررسی دوباره هر ۳۰ دقیقه
-setInterval(loadBarcaNews, 30 * 60 * 1000);
-
-// =========================================================
-// SCROLL REVEAL
-// =========================================================
-const revealEls = document.querySelectorAll('.reveal');
-const io = new IntersectionObserver((entries) => {
-entries.forEach(entry => {
-if (entry.isIntersecting) {
-entry.target.classList.add('in');
-io.unobserve(entry.target);
-}
-});
-}, {
-threshold: 0.12
-});
-
-revealEls.forEach(el => io.observe(el));
+document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
 </script>
+
 </body>
 </html>
