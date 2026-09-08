@@ -35,8 +35,6 @@
 --garnet: #a6193a;
 --garnet-soft: rgba(166,25,58,0.14);
 --success: #3ecf8e;
---barca-blue: #004d98;
---barca-red: #a50044;
 --shadow: 0 20px 60px -20px rgba(0,0,0,0.5);
 --radius-sm: 10px;
 --radius-md: 16px;
@@ -57,8 +55,6 @@
 --accent-soft: rgba(47,102,232,0.10);
 --garnet: #a6193a;
 --garnet-soft: rgba(166,25,58,0.08);
---barca-blue: #004d98;
---barca-red: #a50044;
 --shadow: 0 20px 50px -24px rgba(20,24,31,0.18);
 }
 * { box-sizing: border-box; }
@@ -587,159 +583,59 @@ max-width: 300px;
 margin: 0 auto;
 }
 }
-/* ============ BARÇA NEWS ============ */
-.barca-news-section {
-position: relative;
-overflow: hidden;
-background:
-radial-gradient(circle at 90% 10%, rgba(0,77,152,0.10), transparent 30%),
-radial-gradient(circle at 10% 90%, rgba(165,0,68,0.09), transparent 30%),
-var(--bg);
-}
-.barca-news-header {
-display: flex;
-justify-content: space-between;
-align-items: flex-end;
-gap: 20px;
-margin-bottom: 32px;
-}
-.barca-news-title {
-display: flex;
-align-items: center;
-gap: 12px;
-}
-.barca-ball {
-width: 46px;
-height: 46px;
-border-radius: 14px;
-display: grid;
-place-items: center;
-font-size: 24px;
-background: linear-gradient(135deg, var(--barca-blue), var(--barca-red));
-box-shadow: 0 10px 25px rgba(0,77,152,0.22);
-flex-shrink: 0;
-}
-.barca-news-title h2 {
-margin: 0;
-}
-.barca-news-subtitle {
-margin: 7px 0 0;
-opacity: .7;
-font-size: 14px;
-}
-.barca-news-actions {
-display: flex;
-gap: 10px;
-flex-wrap: wrap;
-}
-.barca-official-link {
-display: inline-flex;
-align-items: center;
-gap: 7px;
-padding: 9px 14px;
-border-radius: 999px;
-border: 1px solid var(--border-strong);
-color: var(--text-muted);
-font-size: 0.82rem;
-transition:
-color .25s ease,
-border-color .25s ease,
-transform .25s ease;
-}
-.barca-official-link:hover {
-color: var(--barca-blue);
-border-color: var(--barca-blue);
-transform: translateY(-2px);
-}
-.barca-news-grid {
+/* ============ BARÇA NEWS (کد قبلی شما) ============ */
+.news-cards {
 display: grid;
 grid-template-columns: repeat(3, 1fr);
-gap: 20px;
+gap: 18px;
+margin-top: 30px;
 }
-.barca-news-card {
-display: flex;
-flex-direction: column;
-min-height: 220px;
-padding: 22px;
-border-radius: 22px;
+.news-card {
+background: var(--surface);
 border: 1px solid var(--border);
-background: rgba(255,255,255,0.045);
-backdrop-filter: blur(12px);
--webkit-backdrop-filter: blur(12px);
-transition:
-transform .25s ease,
-box-shadow .25s ease,
-border-color .25s ease;
-}
-[data-theme="light"] .barca-news-card {
-background: rgba(255,255,255,0.78);
-}
-.barca-news-card:hover {
-transform: translateY(-6px);
-box-shadow: 0 18px 40px rgba(0,0,0,.12);
-border-color: rgba(0,77,152,.35);
-}
-.barca-news-meta {
+border-radius: var(--radius-md);
+padding: 22px;
 display: flex;
-justify-content: space-between;
-align-items: center;
-gap: 10px;
-margin-bottom: 18px;
-font-size: 12px;
-opacity: .65;
-}
-.barca-news-tag {
-display: inline-flex;
-padding: 5px 9px;
-border-radius: 999px;
-background: rgba(165,0,68,.12);
-color: var(--barca-red);
-font-weight: 700;
-}
-.barca-news-card h3 {
-margin: 0 0 12px;
-font-size: 18px;
-line-height: 1.7;
-}
-.barca-news-card p {
-margin: 0;
-opacity: .72;
-line-height: 1.8;
-font-size: 14px;
-}
-.barca-news-link {
-margin-top: auto;
-padding-top: 22px;
-color: var(--barca-blue);
-font-weight: 700;
-text-decoration: none;
-}
-.barca-news-link:hover {
-text-decoration: underline;
-}
-.barca-news-status {
-grid-column: 1 / -1;
-text-align: center;
-padding: 30px;
-opacity: .65;
-border: 1px dashed var(--border-strong);
-border-radius: 20px;
-}
-@media (max-width: 900px) {
-.barca-news-grid {
-grid-template-columns: 1fr 1fr;
-}
-.barca-news-header {
-align-items: flex-start;
 flex-direction: column;
+justify-content: space-between;
+transition: transform 0.25s ease, border-color 0.25s ease;
 }
+.news-card:hover {
+transform: translateY(-4px);
+border-color: var(--accent);
 }
-@media (max-width: 600px) {
-.barca-news-grid {
+.news-tag {
+display: inline-block;
+align-self: flex-start;
+padding: 4px 10px;
+border-radius: 999px;
+background: var(--garnet-soft);
+color: var(--garnet);
+font-size: 0.78rem;
+font-weight: 700;
+margin-bottom: 12px;
+}
+.news-card h3 {
+font-size: 1.05rem;
+line-height: 1.5;
+margin-bottom: 10px;
+}
+.news-card p {
+color: var(--text-muted);
+font-size: 0.88rem;
+margin: 0 0 16px;
+}
+.news-link {
+color: var(--accent);
+font-size: 0.88rem;
+font-weight: 600;
+display: inline-flex;
+align-items: center;
+gap: 4px;
+}
+@media (max-width: 860px) {
+.news-cards {
 grid-template-columns: 1fr;
-}
-.barca-news-actions {
-width: 100%;
 }
 }
 /* ============ TECH DASHBOARD ============ */
@@ -801,51 +697,6 @@ grid-template-columns: repeat(2, 1fr);
 .dash {
 grid-template-columns: 1fr;
 }
-}
-/* ============ LEARNING ============ */
-.learning-list {
-display: flex;
-flex-direction: column;
-gap: 14px;
-}
-.learn-row {
-display: flex;
-align-items: center;
-gap: 18px;
-background: var(--surface);
-border: 1px solid var(--border);
-border-radius: var(--radius-md);
-padding: 20px 24px;
-flex-wrap: wrap;
-}
-.learn-icon {
-font-size: 1.4rem;
-flex-shrink: 0;
-}
-.learn-name {
-font-weight: 700;
-min-width: 130px;
-}
-.learn-note {
-color: var(--text-muted);
-font-size: 0.9rem;
-flex: 1;
-min-width: 180px;
-}
-.learn-badge {
-padding: 6px 14px;
-border-radius: 999px;
-font-size: 0.8rem;
-font-weight: 600;
-white-space: nowrap;
-}
-.learn-badge.active {
-background: var(--accent-soft);
-color: var(--accent);
-}
-.learn-badge.started {
-background: rgba(62,207,142,0.12);
-color: var(--success);
 }
 /* ============ PROJECTS ============ */
 .projects-grid {
@@ -1282,43 +1133,41 @@ font-family="Vazirmatn, sans-serif">10</text>
 </div>
 </section>
 
-<!-- ============ BARÇA NEWS ============ -->
-<section class="section barca-news-section" id="barca-news">
+<!-- ============ BARÇA NEWS (ساختار قبلی شما) ============ -->
+<section class="section" id="barca-news">
 <div class="wrap">
-<div class="barca-news-header reveal">
-<div>
-<div class="barca-news-title">
-<div class="barca-ball">🔵🔴</div>
-<div>
-<h2>آخرین اخبار بارسا</h2>
-<p class="barca-news-subtitle">
-جدیدترین خبرهای رسمی FC Barcelona
-</p>
-</div>
-</div>
+<div class="section-head reveal">
+<span class="section-kicker">اخبار بارسا 📰</span>
+<h2>آخرین اخبار FC Barcelona</h2>
+<p>خبرهای روز باشگاه محبوبم، مستقیم از منابع رسمی.</p>
 </div>
 
-<div class="barca-news-actions">
-<a
-class="barca-official-link"
-href="https://www.fcbarcelona.com/en/football/first-team/news"
-target="_blank"
-rel="noopener noreferrer"
->
-اخبار رسمی Barça ↗
-</a>
-</div>
-</div>
-
-<div class="barca-news-grid" id="barcaNewsGrid">
-<div class="barca-news-card">
-<div class="barca-news-meta">
-<span class="barca-news-tag">اخبار باشگاه</span>
-<span>رسمی</span>
-</div>
-<h3>آماده‌سازی بارسلونا برای مسابقات بعدی</h3>
+<div class="news-cards reveal">
+<div class="news-card">
+<div>
+<span class="news-tag">اخبار تیم</span>
+<h3>آماده‌سازی بارسلونا برای مسابقه بعدی</h3>
 <p>تیم بارسلونا با تمرکز بر تاکتیک‌های هوشمندانه در حال پیگیری تمرینات فشرده خود است.</p>
-<a class="barca-news-link" href="https://www.fcbarcelona.com/en/football/first-team/news" target="_blank">مشاهده بیشتر ↗</a>
+</div>
+<a href="https://www.fcbarcelona.com/en/football/first-team/news" target="_blank" rel="noopener noreferrer" class="news-link">خواندن خبر در وب‌سایت رسمی ↗</a>
+</div>
+
+<div class="news-card">
+<div>
+<span class="news-tag">آکادمی و جوانان</span>
+<h3>درخشش استعدادهای جدید در لاماسیا</h3>
+<p>بازیکنان جوان بارسلونا همچنان در حال اثبات توانایی‌های خود در سطح اول فوتبال هستند.</p>
+</div>
+<a href="https://www.fcbarcelona.com/en/football/first-team/news" target="_blank" rel="noopener noreferrer" class="news-link">خواندن خبر در وب‌سایت رسمی ↗</a>
+</div>
+
+<div class="news-card">
+<div>
+<span class="news-tag">باشگاه</span>
+<h3>گزارش بازی‌ها و عملکرد فصل</h3>
+<p>بررسی آخرین مسابقات، آمار تیم و وضعیت بارسلونا در رقابت‌های لیگ.</p>
+</div>
+<a href="https://www.fcbarcelona.com/en/football/first-team/news" target="_blank" rel="noopener noreferrer" class="news-link">خواندن خبر در وب‌سایت رسمی ↗</a>
 </div>
 </div>
 </div>
