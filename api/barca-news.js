@@ -1,107 +1,168 @@
+/*
+  Combined Barça news feed:
+  - MARCA (official published RSS feed — news articles)
+  - Gerard Romero's official YouTube channel RSS
+    (transfer market videos/rumors — clearly labeled as such)
+
+  Both are fetched via their own official, publicly published
+  feeds (no HTML scraping), so this doesn't rely on guessing a
+  page's internal structure and isn't affected by the source
+  site's design changing.
+*/
+
+const MARCA_RSS = 'https://e00-marca.uecdn.es/rss/futbol/barcelona.xml';
+const ROMERO_CHANNEL_ID = 'UC0Cbaofl1u2ZSCUjZ9yy-wg';
+const ROMERO_RSS = `https://www.youtube.com/feeds/videos.xml?channel_id=${ROMERO_CHANNEL_ID}`;
+
+function decodeEntities(str = '') {
+  return str
+    .replace(/&amp;/g, '&')
+    .replace(/&#39;/g, "'")
+    .replace(/&quot;/g, '"')
+    .replace(/&nbsp;/g, ' ')
+    .replace(/&lt;/g, '<')
+    .replace(/&gt;/g, '>')
+    .replace(/<[^>]*>/g, ' ')
+    .replace(/\s+/g, ' ')
+    .trim();
+}
+
+function extractTag(block, tag) {
+  const cdataMatch = block.match(
+    new RegExp(`<${tag}[^>]*><!\\[CDATA\\[([\\s\\S]*?)\\]\\]></${tag}>`, 'i')
+  );
+  if (cdataMatch) return cdataMatch[1];
+  const plainMatch = block.match(
+    new RegExp(`<${tag}[^>]*>([\\s\\S]*?)</${tag}>`, 'i')
+  );
+  return plainMatch ? plainMatch[1] : '';
+}
+
+async function fetchMarca() {
+  try {
+    const res = await fetch(MARCA_RSS, {
+      headers: { 'User-Agent': 'Mozilla/5.0' }
+    });
+    if (!res.ok) throw new Error(`Marca RSS returned ${res.status}`);
+    const xml = await res.text();
+    const items = [...xml.matchAll(/<item>([\s\S]*?)<\/item>/g)].slice(0, 8);
+
+    return items.map((m) => {
+      const block = m[1];
+      const title = decodeEntities(extractTag(block, 'title'));
+      const rawSummary = decodeEntities(extractTag(block, 'description'))
+        .replace(/Leer\s*$/i, '')
+        .trim();
+      const link = extractTag(block, 'link').trim();
+      const pubDate = extractTag(block, 'pubDate').trim();
+      const imageMatch = block.match(/<media:content[^>]+url="([^"]+)"/i);
+
+      return {
+        title,
+        summary: rawSummary,
+        url: link,
+        date: pubDate ? new Date(pubDate).toISOString() : null,
+        image: imageMatch ? imageMatch[1] : null,
+        source: 'MARCA',
+        kind: 'news'
+      };
+    });
+  } catch (err) {
+    console.error('Marca fetch failed:', err);
+    return [];
+  }
+}
+
+async function fetchRomero() {
+  try {
+    const res = await fetch(ROMERO_RSS);
+    if (!res.ok) throw new Error(`YouTube RSS returned ${res.status}`);
+    const xml = await res.text();
+    const entries = [...xml.matchAll(/<entry>([\s\S]*?)<\/entry>/g)].slice(0, 5);
+
+    return entries.map((m) => {
+      const block = m[1];
+      const title = decodeEntities(extractTag(block, 'title'));
+      const linkMatch = block.match(/<link[^>]+rel="alternate"[^>]+href="([^"]+)"/i);
+      const published = extractTag(block, 'published').trim();
+      const thumbMatch = block.match(/<media:thumbnail[^>]+url="([^"]+)"/i);
+
+      return {
+        title,
+        summary: 'ویدیوی گزارش/شایعه نقل و انتقالات — کانال یوتیوب Gerard Romero',
+        url: linkMatch ? linkMatch[1] : '',
+        date: published ? new Date(published).toISOString() : null,
+        image: thumbMatch ? thumbMatch[1] : null,
+        source: 'Gerard Romero (YouTube)',
+        kind: 'rumor'
+      };
+    });
+  } catch (err) {
+    console.error('Gerard Romero fetch failed:', err);
+    return [];
+  }
+}
+
+async function translateToPersian(text) {
+  if (!text) return text;
+  try {
+    const res = await fetch(
+      `https://api.mymemory.translated.net/get?q=${encodeURIComponent(
+        text
+      )}&langpair=en|fa`,
+      { signal: AbortSignal.timeout(5000) }
+    );
+    const data = await res.json();
+    const translated = data?.responseData?.translatedText;
+    if (!translated || translated.includes('MYMEMORY WARNING')) return text;
+    return translated;
+  } catch (err) {
+    console.error('Translation failed for:', text, err);
+    return text;
+  }
+}
+
 module.exports = async (req, res) => {
   try {
-    const BARCA_URL =
-      'https://www.fcbarcelona.com/en/football/first-team/news';
+    const [marcaItems, romeroItems] = await Promise.all([
+      fetchMarca(),
+      fetchRomero()
+    ]);
 
-    const response = await fetch(BARCA_URL, {
-      headers: {
-        'User-Agent':
-          'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 Chrome/140 Safari/537.36',
-        'Accept-Language': 'en-US,en;q=0.9'
-      },
-      cache: 'no-store'
+    let combined = [...marcaItems, ...romeroItems].sort((a, b) => {
+      const dateA = a.date ? new Date(a.date).getTime() : 0;
+      const dateB = b.date ? new Date(b.date).getTime() : 0;
+      return dateB - dateA;
     });
 
-    if (!response.ok) {
-      throw new Error(`FC Barcelona returned ${response.status}`);
-    }
+    // Cap total items before translating, to keep translation calls reasonable
+    combined = combined.slice(0, 10);
 
-    const html = await response.text();
-
-    /*
-      Find article links from the official FC Barcelona
-      first-team news page.
-    */
-    const regex =
-      /<a[^>]+href="([^"]*\/en\/football\/first-team\/news\/[^"]+)"[^>]*>([\s\S]*?)<\/a>/gi;
-
-    const items = [];
-    const seen = new Set();
-
-    let match;
-
-    while ((match = regex.exec(html)) && items.length < 8) {
-      const rawUrl = match[1];
-      const rawTitle = match[2];
-
-      // Build absolute URL
-      let url;
-
-      try {
-        url = new URL(
-          rawUrl,
-          'https://www.fcbarcelona.com'
-        ).href;
-      } catch {
-        continue;
-      }
-
-      // Security: only allow official FC Barcelona URLs
-      const parsedUrl = new URL(url);
-
-      if (parsedUrl.hostname !== 'www.fcbarcelona.com') {
-        continue;
-      }
-
-      // Remove HTML from title
-      const title = rawTitle
-        .replace(/<[^>]*>/g, ' ')
-        .replace(/&amp;/g, '&')
-        .replace(/&#39;/g, "'")
-        .replace(/&quot;/g, '"')
-        .replace(/&nbsp;/g, ' ')
-        .replace(/&lt;/g, '<')
-        .replace(/&gt;/g, '>')
-        .replace(/\s+/g, ' ')
-        .trim();
-
-      if (!title || title.length < 8) {
-        continue;
-      }
-
-      if (seen.has(url)) {
-        continue;
-      }
-
-      seen.add(url);
-
-      items.push({
-        title,
-        url
-      });
-    }
-
-    /*
-      Cache the result for 1 hour.
-      stale-while-revalidate allows Vercel to serve
-      an older result while updating it in the background.
-    */
-    res.setHeader(
-      'Cache-Control',
-      's-maxage=3600, stale-while-revalidate=86400'
+    const translated = await Promise.all(
+      combined.map(async (item) => ({
+        ...item,
+        title: await translateToPersian(item.title),
+        summary:
+          item.kind === 'news'
+            ? await translateToPersian(item.summary)
+            : item.summary, // Romero's caption is already Persian text
+        originalTitle: item.title
+      }))
     );
 
+    res.setHeader(
+      'Cache-Control',
+      's-maxage=1800, stale-while-revalidate=86400'
+    );
     return res.status(200).json({
       success: true,
-      source: BARCA_URL,
+      sources: [MARCA_RSS, ROMERO_RSS],
       updatedAt: new Date().toISOString(),
-      count: items.length,
-      items
+      count: translated.length,
+      items: translated
     });
-
   } catch (error) {
     console.error('Barça News API Error:', error);
-
     return res.status(500).json({
       success: false,
       error: 'Unable to load Barça news right now.',
