@@ -1482,3 +1482,312 @@ rel="noopener noreferrer"
 </div>
 
 <div class="project-card placeholder">
+<p>پروژه بعدی به‌زودی اینجا اضافه می‌شود ✦</p>
+</div>
+
+<div class="project-card placeholder">
+<p>جای خالی برای یک ایده جدید ✦</p>
+</div>
+</div>
+</div>
+</section>
+
+<!-- ============ HOBBIES ============ -->
+<section class="section" id="hobbies">
+<div class="wrap">
+<div class="section-head reveal">
+<span class="section-kicker">سرگرمی‌ها</span>
+<h2>وقتی از جلوی صفحه بلند می‌شوم</h2>
+</div>
+
+<div class="hobby-strip reveal">
+<div class="hobby-card">
+<div class="bento-icon">🎮</div>
+<h4>Roblox و بازی</h4>
+<p>ساعت‌ها بازی و کشف دنیاهای مختلف Roblox.</p>
+</div>
+
+<div class="hobby-card">
+<div class="bento-icon">⚽</div>
+<h4>فوتبال</h4>
+<p>هم بازی کردن، هم دنبال کردن Barcelona.</p>
+</div>
+
+<div class="hobby-card">
+<div class="bento-icon">🎵</div>
+<h4>تنبک</h4>
+<p>نواختن تنبک، یک سرگرمی آرامش‌بخش.</p>
+</div>
+
+<div class="hobby-card">
+<div class="bento-icon">🎬</div>
+<h4>فیلم و سریال</h4>
+<p>مارتون کردن فیلم و سریال‌های موردعلاقه‌ام.</p>
+</div>
+</div>
+</div>
+</section>
+
+<!-- ============ FAVORITES ============ -->
+<section class="section" id="favorites">
+<div class="wrap">
+<div class="section-head reveal">
+<span class="section-kicker">Favorite Things</span>
+<h2>چیزهای مورد علاقه‌ام، خلاصه شده</h2>
+</div>
+
+<div class="fav-grid reveal">
+<div class="fav-card">
+<div class="fav-emoji">⚽</div>
+<div class="fav-label">Favorite Sport</div>
+<div class="fav-value">Football</div>
+</div>
+
+<div class="fav-card">
+<div class="fav-emoji">🔵🔴</div>
+<div class="fav-label">Favorite Club</div>
+<div class="fav-value">FC Barcelona</div>
+</div>
+
+<div class="fav-card">
+<div class="fav-emoji">🐐</div>
+<div class="fav-label">Favorite Player</div>
+<div class="fav-value">Lionel Messi</div>
+</div>
+
+<div class="fav-card">
+<div class="fav-emoji">🍎</div>
+<div class="fav-label">Favorite Tech Ecosystem</div>
+<div class="fav-value">Apple</div>
+</div>
+
+<div class="fav-card">
+<div class="fav-emoji">🐍</div>
+<div class="fav-label">Learning to Love</div>
+<div class="fav-value">Python</div>
+</div>
+</div>
+</div>
+</section>
+
+<!-- ============ CONTACT ============ -->
+<section class="section" id="contact">
+<div class="wrap">
+<div class="contact-box reveal">
+<h2>بزودی راه‌های ارتباطی اضافه می‌شود</h2>
+
+<p>
+این بخش برای شبکه‌های اجتماعی و راه‌های تماس آینده در نظر گرفته شده —
+به‌زودی این‌جا تکمیل می‌شود.
+</p>
+
+<div class="social-slots">
+<div class="social-slot">＋</div>
+<div class="social-slot">＋</div>
+<div class="social-slot">＋</div>
+</div>
+</div>
+</div>
+</section>
+
+<!-- ============ FOOTER ============ -->
+<footer>
+<div class="wrap footer-inner">
+<div class="brand">
+<span class="brand-mark" style="width:28px;height:28px;font-size:0.8rem;">S</span>
+پورتفولیو
+</div>
+
+<span class="footer-tag">
+ساخته‌شده با علاقه به تکنولوژی 🚀
+</span>
+</div>
+</footer>
+
+<script>
+// =========================================================
+// THEME TOGGLE
+// =========================================================
+const themeToggle = document.getElementById('themeToggle');
+const moonIcon = document.getElementById('themeIconMoon');
+const sunIcon = document.getElementById('themeIconSun');
+const body = document.body;
+
+function setTheme(theme) {
+body.setAttribute('data-theme', theme);
+
+if (theme === 'light') {
+moonIcon.style.display = 'none';
+sunIcon.style.display = 'block';
+} else {
+moonIcon.style.display = 'block';
+sunIcon.style.display = 'none';
+}
+}
+
+let currentTheme = 'dark';
+themeToggle.addEventListener('click', () => {
+currentTheme = currentTheme === 'dark' ? 'light' : 'dark';
+setTheme(currentTheme);
+});
+
+// =========================================================
+// MOBILE MENU
+// =========================================================
+const hamburger = document.getElementById('hamburger');
+const mobileMenu = document.getElementById('mobileMenu');
+
+hamburger.addEventListener('click', () => {
+hamburger.classList.toggle('open');
+mobileMenu.classList.toggle('open');
+});
+
+mobileMenu.querySelectorAll('a').forEach(a => {
+a.addEventListener('click', () => {
+hamburger.classList.remove('open');
+mobileMenu.classList.remove('open');
+});
+});
+
+// =========================================================
+// BARÇA NEWS
+// =========================================================
+const barcaNewsGrid = document.getElementById('barcaNewsGrid');
+const barcaNewsUpdated = document.getElementById('barcaNewsUpdated');
+
+function escapeHtml(value) {
+return String(value)
+.replace(/&/g, '&amp;')
+.replace(/</g, '&lt;')
+.replace(/>/g, '&gt;')
+.replace(/"/g, '&quot;')
+.replace(/'/g, '&#39;');
+}
+
+function formatNewsDate(dateString) {
+if (!dateString) return 'جدیدترین';
+
+const date = new Date(dateString);
+
+if (Number.isNaN(date.getTime())) {
+return 'جدیدترین';
+}
+
+return new Intl.DateTimeFormat('fa-IR', {
+year: 'numeric',
+month: 'short',
+day: 'numeric'
+}).format(date);
+}
+
+function renderBarcaNews(items) {
+if (!Array.isArray(items) || items.length === 0) {
+barcaNewsGrid.innerHTML = `
+<div class="barca-news-status barca-news-error">
+فعلاً خبری برای نمایش پیدا نشد. دوباره کمی بعد امتحان کن ⚽
+</div>
+`;
+return;
+}
+
+barcaNewsGrid.innerHTML = items
+.slice(0, 8)
+.map((item) => {
+const title = escapeHtml(item.title || 'خبر بارسلونا');
+const url = escapeHtml(item.url || 'https://www.fcbarcelona.com/en/football/first-team/news');
+const date = formatNewsDate(item.date || item.publishedAt);
+
+return `
+<article class="barca-news-card reveal in">
+<div class="barca-news-meta">
+<span class="barca-news-tag">FC Barcelona</span>
+<span>${date}</span>
+</div>
+
+<h3>${title}</h3>
+
+<p>
+جدیدترین اخبار بارسا را در سایت سامیار/samyar بخوان.
+</p>
+
+<a
+class="barca-news-link"
+href="${url}"
+target="_blank"
+rel="noopener noreferrer"
+>
+ادامه خبر ↗
+</a>
+</article>
+`;
+})
+.join('');
+}
+
+function renderBarcaError() {
+barcaNewsGrid.innerHTML = `
+<div class="barca-news-status barca-news-error">
+دریافت اخبار بارسا در حال حاضر ممکن نیست 😕
+<br>
+<small>لینک اخبار رسمی بارسلونا همچنان در بالای این بخش در دسترس است.</small>
+</div>
+`;
+}
+
+async function loadBarcaNews() {
+try {
+const response = await fetch('/api/barca-news', {
+method: 'GET',
+cache: 'no-store',
+headers: {
+'Accept': 'application/json'
+}
+});
+
+if (!response.ok) {
+throw new Error(`News API returned ${response.status}`);
+}
+
+const data = await response.json();
+
+renderBarcaNews(data.items);
+
+if (data.updatedAt) {
+barcaNewsUpdated.textContent =
+'آخرین بررسی: ' + formatNewsDate(data.updatedAt);
+} else {
+barcaNewsUpdated.textContent = 'اخبار از منبع رسمی FC Barcelona دریافت می‌شوند.';
+}
+
+} catch (error) {
+console.error('Barça news error:', error);
+renderBarcaError();
+barcaNewsUpdated.textContent =
+'اتصال اخبار فعلاً در دسترس نیست.';
+}
+}
+
+// دریافت اخبار هنگام باز شدن سایت
+loadBarcaNews();
+// بررسی دوباره هر ۳۰ دقیقه
+setInterval(loadBarcaNews, 30 * 60 * 1000);
+
+// =========================================================
+// SCROLL REVEAL
+// =========================================================
+const revealEls = document.querySelectorAll('.reveal');
+const io = new IntersectionObserver((entries) => {
+entries.forEach(entry => {
+if (entry.isIntersecting) {
+entry.target.classList.add('in');
+io.unobserve(entry.target);
+}
+});
+}, {
+threshold: 0.12
+});
+
+revealEls.forEach(el => io.observe(el));
+</script>
+</body>
+</html>
