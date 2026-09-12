@@ -935,11 +935,79 @@
   document.getElementById('refreshBtn').addEventListener('click', loadNews);
 
   // =========================================================
+  // MATCHES
+  // =========================================================
+  const MATCHES_ENDPOINT = '/api/barca-matches';
+
+  function formatMatchDate(dateStr) {
+    if (!dateStr) return '';
+    const date = new Date(dateStr);
+    if (Number.isNaN(date.getTime())) return '';
+    return new Intl.DateTimeFormat('fa-IR', {
+      year: 'numeric', month: 'short', day: 'numeric', hour: '2-digit', minute: '2-digit'
+    }).format(date);
+  }
+
+  function renderMatches(matches) {
+    const el = document.getElementById('matchesList');
+    if (!matches.length) {
+      el.innerHTML = `
+        <div class="matches-empty">
+          فعلاً بازی‌ای برای نمایش موجود نیست.
+        </div>
+      `;
+      return;
+    }
+
+    el.innerHTML = matches.map(m => {
+      const teams = m.isHome ? `بارسلونا vs ${escapeHtml(m.opponent)}` : `${escapeHtml(m.opponent)} vs بارسلونا`;
+      const scoreText = m.score ? ` — ${m.score.home} : ${m.score.away}` : '';
+      return `
+        <div class="match-row">
+          <div class="match-teams">${teams}${scoreText}</div>
+          <div class="match-meta">
+            <span>${escapeHtml(m.competition)}</span>
+            <span>${formatMatchDate(m.date)}</span>
+          </div>
+          <span class="match-status">${escapeHtml(m.status)}</span>
+        </div>
+      `;
+    }).join('');
+  }
+
+  async function loadMatches() {
+    try {
+      const res = await fetch(MATCHES_ENDPOINT, { cache: 'no-store', headers: { Accept: 'application/json' } });
+      const data = await res.json();
+
+      if (!data.success || !Array.isArray(data.matches) || !data.matches.length) {
+        document.getElementById('matchesList').innerHTML = `
+          <div class="matches-empty">
+            این بخش هنوز به منبع رسمی نتایج/برنامه‌ی بازی‌ها وصل نشده — برای جلوگیری از نمایش اطلاعات نادرست، فعلاً چیزی نمایش داده نمی‌شود.
+            <br><br>
+            به‌محض اتصال به یک API معتبر، بازی‌های واقعی اینجا نمایش داده خواهند شد.
+          </div>
+        `;
+        return;
+      }
+
+      renderMatches(data.matches);
+    } catch (err) {
+      console.error('Matches fetch failed:', err);
+      document.getElementById('matchesList').innerHTML = `
+        <div class="matches-empty">دریافت برنامه‌ی بازی‌ها با مشکل مواجه شد.</div>
+      `;
+    }
+  }
+
+  // =========================================================
   // INIT
   // =========================================================
   renderPlayers();
   loadNews();
+  loadMatches();
   setInterval(loadNews, REFRESH_INTERVAL_MS);
+  setInterval(loadMatches, REFRESH_INTERVAL_MS);
 
   // scroll reveal
   const io = new IntersectionObserver((entries) => {
