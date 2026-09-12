@@ -3,1792 +3,952 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>پورتفولیوی شخصی | نوجوان علاقه‌مند به تکنولوژی و فوتبال</title>
-<meta name="description" content="وب‌سایت شخصی — تکنولوژی، هوش مصنوعی، فوتبال، Barcelona و پروژه‌های در حال یادگیری">
-<meta name="theme-color" content="#0a0d13">
-<meta name="google-site-verification" content="HsbyXaF7uGOLYKwdkxZRr8MESOg8yWBgyGMraxu9WE4" />
+<title>بارسا نیوز | آخرین اخبار بارسلونا</title>
+<meta name="description" content="آخرین اخبار بارسلونا، نقل‌وانتقالات، بازی‌ها و اخبار بازیکنان را از منابع معتبر فوتبال دنبال کنید.">
+<meta name="theme-color" content="#0b0e14">
+<link rel="canonical" href="https://example.com/">
+
+<meta property="og:title" content="بارسا نیوز | آخرین اخبار بارسلونا">
+<meta property="og:description" content="آخرین اخبار بارسلونا، سریع و یکجا">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="fa_IR">
+
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+
 <style>
-/* ============ TOKENS ============ */
-:root {
---bg: #0a0d13;
---bg-soft: #0f131b;
---surface: #141922;
---surface-2: #1a2029;
---border: rgba(255,255,255,0.08);
---border-strong: rgba(255,255,255,0.14);
---text: #eef1f6;
---text-muted: #8d96a6;
---text-faint: #5c6577;
---accent: #4f83ff;
---accent-soft: rgba(79,131,255,0.14);
---garnet: #a6193a;
---garnet-soft: rgba(166,25,58,0.14);
---success: #3ecf8e;
---barca-blue: #004d98;
---barca-red: #a50044;
---shadow: 0 20px 60px -20px rgba(0,0,0,0.5);
---radius-sm: 10px;
---radius-md: 16px;
---radius-lg: 26px;
---maxw: 1180px;
-}
-[data-theme="light"] {
---bg: #f6f7fa;
---bg-soft: #ffffff;
---surface: #ffffff;
---surface-2: #f0f2f6;
---border: rgba(15,20,30,0.08);
---border-strong: rgba(15,20,30,0.14);
---text: #14181f;
---text-muted: #5b6472;
---text-faint: #929aa8;
---accent: #2f66e8;
---accent-soft: rgba(47,102,232,0.10);
---garnet: #a6193a;
---garnet-soft: rgba(166,25,58,0.08);
---barca-blue: #004d98;
---barca-red: #a50044;
---shadow: 0 20px 50px -24px rgba(20,24,31,0.18);
-}
-* { box-sizing: border-box; }
-html {
-scroll-behavior: smooth;
-scroll-padding-top: 90px;
-}
-@media (prefers-reduced-motion: reduce) {
-html { scroll-behavior: auto; }
-* {
-animation-duration: 0.001ms !important;
-transition-duration: 0.001ms !important;
-}
-}
-body {
-margin: 0;
-background: var(--bg);
-color: var(--text);
-font-family: 'Vazirmatn', system-ui, sans-serif;
-line-height: 1.75;
--webkit-font-smoothing: antialiased;
-transition: background 0.4s ease, color 0.4s ease;
-}
-img, svg {
-display: block;
-max-width: 100%;
-}
-a {
-color: inherit;
-text-decoration: none;
-}
-button {
-font: inherit;
-}
-.wrap {
-max-width: var(--maxw);
-margin: 0 auto;
-padding: 0 28px;
-}
-section {
-position: relative;
-}
-h1, h2, h3, h4 {
-margin: 0;
-font-weight: 800;
-letter-spacing: -0.01em;
-}
-::selection {
-background: var(--accent);
-color: #fff;
-}
-:focus-visible {
-outline: 2px solid var(--accent);
-outline-offset: 3px;
-border-radius: 4px;
-}
-/* ============ NAVBAR ============ */
-.navbar {
-position: fixed;
-top: 0;
-right: 0;
-left: 0;
-z-index: 100;
-background: color-mix(in srgb, var(--bg) 78%, transparent);
-backdrop-filter: blur(14px);
--webkit-backdrop-filter: blur(14px);
-border-bottom: 1px solid var(--border);
-transition: background 0.4s ease, border-color 0.4s ease;
-}
-.navbar-inner {
-max-width: var(--maxw);
-margin: 0 auto;
-padding: 16px 28px;
-display: flex;
-align-items: center;
-justify-content: space-between;
-}
-.brand {
-display: flex;
-align-items: center;
-gap: 10px;
-font-weight: 800;
-font-size: 1.05rem;
-}
-.brand-mark {
-width: 34px;
-height: 34px;
-border-radius: 10px;
-background: linear-gradient(135deg, var(--accent), var(--garnet));
-display: flex;
-align-items: center;
-justify-content: center;
-color: #fff;
-font-weight: 900;
-font-size: 0.95rem;
-flex-shrink: 0;
-}
-.nav-links {
-display: flex;
-gap: 6px;
-list-style: none;
-padding: 0;
-margin: 0;
-}
-.nav-links a {
-padding: 9px 15px;
-border-radius: 999px;
-font-size: 0.93rem;
-color: var(--text-muted);
-transition: color 0.25s ease, background 0.25s ease;
-}
-.nav-links a:hover {
-color: var(--text);
-background: var(--surface-2);
-}
-.nav-actions {
-display: flex;
-align-items: center;
-gap: 10px;
-}
-.theme-toggle {
-width: 40px;
-height: 40px;
-border-radius: 50%;
-border: 1px solid var(--border);
-background: var(--surface);
-color: var(--text);
-display: flex;
-align-items: center;
-justify-content: center;
-cursor: pointer;
-transition: border-color 0.25s ease, transform 0.2s ease;
-}
-.theme-toggle:hover {
-border-color: var(--accent);
-transform: translateY(-1px);
-}
-.theme-toggle svg {
-width: 18px;
-height: 18px;
-}
-.hamburger {
-display: none;
-width: 40px;
-height: 40px;
-border-radius: 10px;
-border: 1px solid var(--border);
-background: var(--surface);
-cursor: pointer;
-flex-direction: column;
-align-items: center;
-justify-content: center;
-gap: 4px;
-}
-.hamburger span {
-width: 18px;
-height: 2px;
-background: var(--text);
-border-radius: 2px;
-transition: transform 0.25s ease, opacity 0.25s ease;
-}
-.hamburger.open span:nth-child(1) {
-transform: translateY(6px) rotate(45deg);
-}
-.hamburger.open span:nth-child(2) {
-opacity: 0;
-}
-.hamburger.open span:nth-child(3) {
-transform: translateY(-6px) rotate(-45deg);
-}
-.mobile-menu {
-display: none;
-flex-direction: column;
-gap: 4px;
-padding: 10px 28px 20px;
-border-bottom: 1px solid var(--border);
-background: var(--bg);
-}
-.mobile-menu.open {
-display: flex;
-}
-.mobile-menu a {
-padding: 12px 6px;
-border-bottom: 1px solid var(--border);
-color: var(--text-muted);
-}
-.mobile-menu a:last-child {
-border-bottom: none;
-}
-@media (max-width: 860px) {
-.nav-links {
-display: none;
-}
-.hamburger {
-display: flex;
-}
-}
-/* ============ HERO ============ */
-.hero {
-padding: 170px 0 110px;
-overflow: hidden;
-}
-.hero-grid {
-display: grid;
-grid-template-columns: 1.1fr 0.9fr;
-gap: 60px;
-align-items: center;
-}
-.eyebrow-tag {
-display: inline-flex;
-align-items: center;
-gap: 8px;
-padding: 7px 14px;
-border-radius: 999px;
-background: var(--accent-soft);
-color: var(--accent);
-font-size: 0.85rem;
-font-weight: 600;
-margin-bottom: 22px;
-}
-.eyebrow-tag .dot {
-width: 6px;
-height: 6px;
-border-radius: 50%;
-background: var(--success);
-}
-.hero h1 {
-font-size: clamp(2.1rem, 4.6vw, 3.4rem);
-line-height: 1.28;
-margin-bottom: 22px;
-}
-.hero p.lead {
-font-size: 1.12rem;
-color: var(--text-muted);
-max-width: 46ch;
-margin-bottom: 34px;
-}
-.hero-actions {
-display: flex;
-gap: 14px;
-flex-wrap: wrap;
-}
-.btn {
-display: inline-flex;
-align-items: center;
-gap: 8px;
-padding: 14px 26px;
-border-radius: 999px;
-font-weight: 600;
-font-size: 0.98rem;
-cursor: pointer;
-border: 1px solid transparent;
-transition:
-transform 0.2s ease,
-box-shadow 0.2s ease,
-background 0.2s ease,
-border-color 0.2s ease;
-}
-.btn:hover {
-transform: translateY(-2px);
-}
-.btn-primary {
-background: var(--accent);
-color: #fff;
-box-shadow: 0 12px 30px -10px var(--accent-soft);
-}
-.btn-primary:hover {
-box-shadow: 0 16px 34px -10px rgba(79,131,255,0.5);
-}
-.btn-ghost {
-background: transparent;
-color: var(--text);
-border-color: var(--border-strong);
-}
-.btn-ghost:hover {
-border-color: var(--accent);
-color: var(--accent);
-}
-/* hero visual */
-.hero-visual {
-position: relative;
-aspect-ratio: 1/1;
-border-radius: var(--radius-lg);
-background: var(--surface);
-border: 1px solid var(--border);
-overflow: hidden;
-}
-.hero-visual svg {
-width: 100%;
-height: 100%;
-}
-.hv-node {
-fill: var(--accent);
-}
-.hv-node.alt {
-fill: var(--garnet);
-}
-.hv-line {
-stroke: var(--border-strong);
-stroke-width: 1;
-}
-@keyframes floaty {
-0%, 100% { transform: translateY(0); }
-50% { transform: translateY(-10px); }
-}
-@keyframes pulseNode {
-0%, 100% {
-r: 4;
-opacity: 1;
-}
-50% {
-r: 6;
-opacity: 0.7;
-}
-}
-.hv-node {
-animation: pulseNode 3.2s ease-in-out infinite;
-}
-.hv-float {
-animation: floaty 6s ease-in-out infinite;
-}
-.hero-enter {
-opacity: 0;
-transform: translateY(14px);
-animation: heroEnter 0.9s cubic-bezier(.2,.8,.2,1) forwards;
-}
-.hero-enter.d1 { animation-delay: 0.05s; }
-.hero-enter.d2 { animation-delay: 0.16s; }
-.hero-enter.d3 { animation-delay: 0.27s; }
-.hero-enter.d4 { animation-delay: 0.38s; }
-@keyframes heroEnter {
-to {
-opacity: 1;
-transform: translateY(0);
-}
-}
-@media (max-width: 900px) {
-.hero-grid {
-grid-template-columns: 1fr;
-}
-.hero-visual {
-max-width: 380px;
-margin: 0 auto;
-}
-.hero {
-padding: 140px 0 70px;
-}
-}
-/* ============ SECTION SHARED ============ */
-.section {
-padding: 96px 0;
-border-top: 1px solid var(--border);
-}
-.section-head {
-max-width: 60ch;
-margin-bottom: 52px;
-}
-.section-kicker {
-color: var(--accent);
-font-weight: 700;
-font-size: 0.92rem;
-margin-bottom: 10px;
-display: block;
-}
-.section-head h2 {
-font-size: clamp(1.6rem, 3vw, 2.3rem);
-margin-bottom: 14px;
-}
-.section-head p {
-color: var(--text-muted);
-font-size: 1.03rem;
-margin: 0;
-}
-/* ============ ABOUT ============ */
-.about-layout {
-display: grid;
-grid-template-columns: 0.85fr 1.15fr;
-gap: 56px;
-align-items: start;
-}
-.about-card {
-background: var(--surface);
-border: 1px solid var(--border);
-border-radius: var(--radius-lg);
-padding: 32px;
-}
-.about-card ul {
-list-style: none;
-padding: 0;
-margin: 22px 0 0;
-display: flex;
-flex-direction: column;
-gap: 16px;
-}
-.about-card li {
-display: flex;
-align-items: flex-start;
-gap: 12px;
-color: var(--text-muted);
-font-size: 0.98rem;
-}
-.about-card li .ic {
-flex-shrink: 0;
-font-size: 1.1rem;
-}
-.about-body p {
-color: var(--text-muted);
-font-size: 1.06rem;
-margin: 0 0 18px;
-}
-.about-body strong {
-color: var(--text);
-font-weight: 700;
-}
-@media (max-width: 860px) {
-.about-layout {
-grid-template-columns: 1fr;
-}
-}
-/* ============ BENTO INTERESTS ============ */
-.bento {
-display: grid;
-grid-template-columns: repeat(4, 1fr);
-grid-auto-rows: 150px;
-gap: 18px;
-}
-.bento-item {
-grid-column: span 2;
-grid-row: span 1;
-background: var(--surface);
-border: 1px solid var(--border);
-border-radius: var(--radius-md);
-padding: 24px;
-display: flex;
-flex-direction: column;
-justify-content: space-between;
-transition:
-transform 0.25s ease,
-border-color 0.25s ease,
-box-shadow 0.25s ease;
-}
-.bento-item:hover {
-transform: translateY(-4px);
-border-color: var(--accent);
-box-shadow: var(--shadow);
-}
-.bento-item.tall {
-grid-row: span 2;
-}
-.bento-item.wide {
-grid-column: span 4;
-}
-.bento-icon {
-font-size: 1.7rem;
-}
-.bento-item h3 {
-font-size: 1.05rem;
-margin-top: 10px;
-}
-.bento-item p {
-color: var(--text-muted);
-font-size: 0.9rem;
-margin: 6px 0 0;
-}
-@media (max-width: 900px) {
-.bento {
-grid-template-columns: repeat(2, 1fr);
-grid-auto-rows: 140px;
-}
-.bento-item {
-grid-column: span 1 !important;
-}
-.bento-item.wide {
-grid-column: span 2 !important;
-}
-}
-/* ============ FOOTBALL ============ */
-.football {
-background: linear-gradient(180deg, var(--bg-soft), var(--bg));
-}
-.football-layout {
-display: grid;
-grid-template-columns: 1fr 0.85fr;
-gap: 56px;
-align-items: center;
-}
-.football-copy p {
-color: var(--text-muted);
-font-size: 1.06rem;
-}
-.football-copy .fb-tags {
-display: flex;
-gap: 10px;
-flex-wrap: wrap;
-margin-top: 22px;
-}
-.fb-chip {
-padding: 8px 16px;
-border-radius: 999px;
-background: var(--garnet-soft);
-color: var(--garnet);
-font-weight: 600;
-font-size: 0.88rem;
-border: 1px solid rgba(166,25,58,0.25);
-}
-.football-visual {
-position: relative;
-aspect-ratio: 1/1;
-border-radius: 50%;
-background: var(--surface);
-border: 1px solid var(--border);
-display: flex;
-align-items: center;
-justify-content: center;
-}
-.football-visual svg {
-width: 78%;
-height: 78%;
-}
-@media (max-width: 900px) {
-.football-layout {
-grid-template-columns: 1fr;
-}
-.football-visual {
-max-width: 300px;
-margin: 0 auto;
-}
-}
-/* ============ BARÇA NEWS ============ */
-.barca-news-section {
-position: relative;
-overflow: hidden;
-background:
-radial-gradient(circle at 90% 10%, rgba(0,77,152,0.10), transparent 30%),
-radial-gradient(circle at 10% 90%, rgba(165,0,68,0.09), transparent 30%),
-var(--bg);
-}
-.barca-news-header {
-display: flex;
-justify-content: space-between;
-align-items: flex-end;
-gap: 20px;
-margin-bottom: 32px;
-}
-.barca-news-title {
-display: flex;
-align-items: center;
-gap: 12px;
-}
-.barca-ball {
-width: 46px;
-height: 46px;
-border-radius: 14px;
-display: grid;
-place-items: center;
-font-size: 24px;
-background: linear-gradient(135deg, var(--barca-blue), var(--barca-red));
-box-shadow: 0 10px 25px rgba(0,77,152,0.22);
-flex-shrink: 0;
-}
-.barca-news-title h2 {
-margin: 0;
-}
-.barca-news-subtitle {
-margin: 7px 0 0;
-opacity: .7;
-font-size: 14px;
-}
-.barca-news-actions {
-display: flex;
-gap: 10px;
-flex-wrap: wrap;
-}
-.barca-official-link {
-display: inline-flex;
-align-items: center;
-gap: 7px;
-padding: 9px 14px;
-border-radius: 999px;
-border: 1px solid var(--border-strong);
-color: var(--text-muted);
-font-size: 0.82rem;
-transition:
-color .25s ease,
-border-color .25s ease,
-transform .25s ease;
-}
-.barca-official-link:hover {
-color: var(--barca-blue);
-border-color: var(--barca-blue);
-transform: translateY(-2px);
-}
-.barca-news-grid {
-display: grid;
-grid-template-columns: repeat(3, 1fr);
-gap: 20px;
-}
-.barca-news-card {
-display: flex;
-flex-direction: column;
-min-height: 220px;
-padding: 22px;
-border-radius: 22px;
-border: 1px solid var(--border);
-background: rgba(255,255,255,0.045);
-backdrop-filter: blur(12px);
--webkit-backdrop-filter: blur(12px);
-transition:
-transform .25s ease,
-box-shadow .25s ease,
-border-color .25s ease;
-}
-[data-theme="light"] .barca-news-card {
-background: rgba(255,255,255,0.78);
-}
-.barca-news-card:hover {
-transform: translateY(-6px);
-box-shadow: 0 18px 40px rgba(0,0,0,.12);
-border-color: rgba(0,77,152,.35);
-}
-.barca-news-meta {
-display: flex;
-justify-content: space-between;
-align-items: center;
-gap: 10px;
-margin-bottom: 18px;
-font-size: 12px;
-opacity: .65;
-}
-.barca-news-tag {
-display: inline-flex;
-padding: 5px 9px;
-border-radius: 999px;
-background: rgba(165,0,68,.12);
-color: var(--barca-red);
-font-weight: 700;
-}
-.barca-news-card h3 {
-margin: 0 0 12px;
-font-size: 18px;
-line-height: 1.7;
-}
-.barca-news-card p {
-margin: 0;
-opacity: .72;
-line-height: 1.8;
-font-size: 14px;
-}
-.barca-news-link {
-margin-top: auto;
-padding-top: 22px;
-color: var(--barca-blue);
-font-weight: 700;
-text-decoration: none;
-}
-.barca-news-link:hover {
-text-decoration: underline;
-}
-.barca-news-status {
-grid-column: 1 / -1;
-text-align: center;
-padding: 30px;
-opacity: .65;
-border: 1px dashed var(--border-strong);
-border-radius: 20px;
-}
-.barca-news-error {
-color: var(--garnet);
-}
-.barca-news-updated {
-margin-top: 12px;
-color: var(--text-faint);
-font-size: 12px;
-text-align: center;
-}
-@media (max-width: 900px) {
-.barca-news-grid {
-grid-template-columns: 1fr 1fr;
-}
-.barca-news-header {
-align-items: flex-start;
-flex-direction: column;
-}
-}
-@media (max-width: 600px) {
-.barca-news-grid {
-grid-template-columns: 1fr;
-}
-.barca-news-actions {
-width: 100%;
-}
-}
-/* ============ TECH DASHBOARD ============ */
-.dash {
-display: grid;
-grid-template-columns: repeat(3, 1fr);
-gap: 18px;
-}
-.dash-card {
-background: var(--surface);
-border: 1px solid var(--border);
-border-radius: var(--radius-md);
-padding: 22px;
-transition: border-color 0.25s ease, transform 0.25s ease;
-}
-.dash-card:hover {
-border-color: var(--accent);
-transform: translateY(-3px);
-}
-.dash-top {
-display: flex;
-align-items: center;
-justify-content: space-between;
-margin-bottom: 14px;
-}
-.dash-icon {
-width: 38px;
-height: 38px;
-border-radius: 10px;
-background: var(--accent-soft);
-color: var(--accent);
-display: flex;
-align-items: center;
-justify-content: center;
-font-size: 1.1rem;
-}
-.dash-status {
-font-size: 0.74rem;
-padding: 3px 10px;
-border-radius: 999px;
-background: var(--surface-2);
-color: var(--text-faint);
-}
-.dash-card h4 {
-font-size: 1rem;
-margin-bottom: 6px;
-}
-.dash-card p {
-color: var(--text-muted);
-font-size: 0.88rem;
-margin: 0;
-}
-@media (max-width: 780px) {
-.dash {
-grid-template-columns: repeat(2, 1fr);
-}
-}
-@media (max-width: 480px) {
-.dash {
-grid-template-columns: 1fr;
-}
-}
-/* ============ LEARNING ============ */
-.learning-list {
-display: flex;
-flex-direction: column;
-gap: 14px;
-}
-.learn-row {
-display: flex;
-align-items: center;
-gap: 18px;
-background: var(--surface);
-border: 1px solid var(--border);
-border-radius: var(--radius-md);
-padding: 20px 24px;
-flex-wrap: wrap;
-}
-.learn-icon {
-font-size: 1.4rem;
-flex-shrink: 0;
-}
-.learn-name {
-font-weight: 700;
-min-width: 130px;
-}
-.learn-note {
-color: var(--text-muted);
-font-size: 0.9rem;
-flex: 1;
-min-width: 180px;
-}
-.learn-badge {
-padding: 6px 14px;
-border-radius: 999px;
-font-size: 0.8rem;
-font-weight: 600;
-white-space: nowrap;
-}
-.learn-badge.active {
-background: var(--accent-soft);
-color: var(--accent);
-}
-.learn-badge.started {
-background: rgba(62,207,142,0.12);
-color: var(--success);
-}
-/* ============ PROJECTS ============ */
-.projects-grid {
-display: grid;
-grid-template-columns: repeat(3, 1fr);
-gap: 20px;
-}
-.project-card {
-background: var(--surface);
-border: 1px solid var(--border);
-border-radius: var(--radius-md);
-padding: 26px;
-display: flex;
-flex-direction: column;
-min-height: 210px;
-transition: border-color 0.25s ease, transform 0.25s ease;
-}
-.project-card:hover {
-transform: translateY(-4px);
-border-color: var(--accent);
-}
-.project-card.placeholder {
-border-style: dashed;
-border-color: var(--border-strong);
-justify-content: center;
-align-items: center;
-text-align: center;
-color: var(--text-faint);
-}
-.project-status {
-align-self: flex-start;
-padding: 5px 13px;
-border-radius: 999px;
-font-size: 0.76rem;
-font-weight: 700;
-margin-bottom: 16px;
-}
-.project-status.building {
-background: var(--accent-soft);
-color: var(--accent);
-}
-.project-status.soon {
-background: var(--surface-2);
-color: var(--text-faint);
-}
-.project-card h4 {
-font-size: 1.08rem;
-margin-bottom: 10px;
-}
-.project-card p {
-color: var(--text-muted);
-font-size: 0.92rem;
-margin: 0;
-}
-@media (max-width: 860px) {
-.projects-grid {
-grid-template-columns: 1fr 1fr;
-}
-}
-@media (max-width: 560px) {
-.projects-grid {
-grid-template-columns: 1fr;
-}
-}
-/* ============ HOBBIES ============ */
-.hobby-strip {
-display: flex;
-gap: 16px;
-overflow-x: auto;
-padding-bottom: 8px;
-scrollbar-width: thin;
-}
-.hobby-card {
-flex: 0 0 220px;
-background: var(--surface);
-border: 1px solid var(--border);
-border-radius: var(--radius-md);
-padding: 22px;
-}
-.hobby-card .bento-icon {
-margin-bottom: 10px;
-}
-.hobby-card h4 {
-font-size: 1rem;
-margin-bottom: 6px;
-}
-.hobby-card p {
-color: var(--text-muted);
-font-size: 0.88rem;
-margin: 0;
-}
-/* ============ FAVORITES ============ */
-.fav-grid {
-display: grid;
-grid-template-columns: repeat(5, 1fr);
-gap: 16px;
-}
-.fav-card {
-background: var(--surface);
-border: 1px solid var(--border);
-border-radius: var(--radius-md);
-padding: 22px 18px;
-text-align: center;
-transition: transform 0.25s ease, border-color 0.25s ease;
-}
-.fav-card:hover {
-transform: translateY(-4px);
-border-color: var(--accent);
-}
-.fav-label {
-color: var(--text-faint);
-font-size: 0.78rem;
-margin-bottom: 10px;
-}
-.fav-value {
-font-weight: 800;
-font-size: 1.02rem;
-}
-.fav-emoji {
-font-size: 1.6rem;
-margin-bottom: 10px;
-}
-@media (max-width: 900px) {
-.fav-grid {
-grid-template-columns: repeat(3, 1fr);
-}
-}
-@media (max-width: 560px) {
-.fav-grid {
-grid-template-columns: repeat(2, 1fr);
-}
-}
-/* ============ CONTACT ============ */
-.contact-box {
-background: var(--surface);
-border: 1px solid var(--border);
-border-radius: var(--radius-lg);
-padding: 48px;
-text-align: center;
-}
-.contact-box h2 {
-font-size: clamp(1.5rem, 3vw, 2rem);
-margin-bottom: 14px;
-}
-.contact-box p {
-color: var(--text-muted);
-max-width: 50ch;
-margin: 0 auto 26px;
-}
-.social-slots {
-display: flex;
-gap: 12px;
-justify-content: center;
-flex-wrap: wrap;
-}
-.social-slot {
-width: 46px;
-height: 46px;
-border-radius: 50%;
-border: 1px dashed var(--border-strong);
-display: flex;
-align-items: center;
-justify-content: center;
-color: var(--text-faint);
-font-size: 0.8rem;
-}
-/* ============ FOOTER ============ */
-footer {
-border-top: 1px solid var(--border);
-padding: 40px 0;
-}
-.footer-inner {
-display: flex;
-align-items: center;
-justify-content: space-between;
-flex-wrap: wrap;
-gap: 14px;
-}
-.footer-inner .brand {
-font-size: 0.98rem;
-}
-.footer-tag {
-color: var(--text-faint);
-font-size: 0.9rem;
-}
-/* ============ SCROLL REVEAL ============ */
-.reveal {
-opacity: 0;
-transform: translateY(18px);
-transition: opacity 0.6s ease, transform 0.6s ease;
-}
-.reveal.in {
-opacity: 1;
-transform: translateY(0);
-}
+  :root {
+    --bg: #0b0e14;
+    --bg-soft: #0f131b;
+    --surface: #141922;
+    --surface-2: #1a2029;
+    --border: rgba(255,255,255,0.08);
+    --border-strong: rgba(255,255,255,0.16);
+    --text: #eef1f6;
+    --text-muted: #8d96a6;
+    --text-faint: #5c6577;
+    --barca-blue: #004d98;
+    --barca-red: #a50044;
+    --accent: #f2b134;
+    --accent-soft: rgba(242,177,52,0.14);
+    --success: #3ecf8e;
+    --shadow: 0 20px 60px -20px rgba(0,0,0,0.55);
+    --radius-sm: 10px;
+    --radius-md: 16px;
+    --radius-lg: 24px;
+    --maxw: 1280px;
+  }
+
+  [data-theme="light"] {
+    --bg: #f5f6f9;
+    --bg-soft: #ffffff;
+    --surface: #ffffff;
+    --surface-2: #eef0f4;
+    --border: rgba(15,20,30,0.08);
+    --border-strong: rgba(15,20,30,0.16);
+    --text: #12151c;
+    --text-muted: #565f6e;
+    --text-faint: #8b93a1;
+    --accent-soft: rgba(242,177,52,0.16);
+    --shadow: 0 20px 50px -24px rgba(20,24,31,0.18);
+  }
+
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; scroll-padding-top: 84px; }
+
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    * { animation-duration: 0.001ms !important; transition-duration: 0.001ms !important; }
+  }
+
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Vazirmatn', system-ui, sans-serif;
+    line-height: 1.75;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  img, svg { display: block; max-width: 100%; }
+  a { color: inherit; text-decoration: none; }
+  button { font: inherit; cursor: pointer; }
+  ::selection { background: var(--accent); color: #14181f; }
+  :focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 4px; }
+
+  .wrap { max-width: var(--maxw); margin: 0 auto; padding: 0 24px; }
+
+  h1, h2, h3, h4 { margin: 0; font-weight: 800; letter-spacing: -0.01em; }
+
+  /* ============ HEADER ============ */
+  .site-header {
+    position: sticky;
+    top: 0;
+    z-index: 200;
+    background: color-mix(in srgb, var(--bg) 82%, transparent);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    border-bottom: 1px solid var(--border);
+  }
+
+  .header-inner {
+    max-width: var(--maxw);
+    margin: 0 auto;
+    padding: 14px 24px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+  }
+
+  .logo { display: flex; align-items: center; gap: 10px; font-weight: 900; font-size: 1.15rem; }
+  .logo-mark {
+    width: 36px; height: 36px; border-radius: 11px;
+    background: linear-gradient(135deg, var(--barca-blue), var(--barca-red));
+    display: grid; place-items: center; font-size: 18px; color: #fff; flex-shrink: 0;
+  }
+
+  .main-nav { display: flex; gap: 4px; list-style: none; margin: 0; padding: 0; }
+  .main-nav a {
+    padding: 9px 14px; border-radius: 999px; font-size: 0.9rem; color: var(--text-muted);
+    transition: color .2s ease, background .2s ease;
+  }
+  .main-nav a:hover { color: var(--text); background: var(--surface-2); }
+
+  .header-actions { display: flex; align-items: center; gap: 8px; }
+
+  .icon-btn {
+    width: 40px; height: 40px; border-radius: 50%;
+    border: 1px solid var(--border); background: var(--surface); color: var(--text);
+    display: grid; place-items: center; transition: border-color .2s ease, transform .2s ease;
+  }
+  .icon-btn:hover { border-color: var(--accent); transform: translateY(-1px); }
+  .icon-btn svg { width: 18px; height: 18px; }
+
+  .hamburger {
+    display: none; width: 40px; height: 40px; border-radius: 10px;
+    border: 1px solid var(--border); background: var(--surface);
+    flex-direction: column; align-items: center; justify-content: center; gap: 4px;
+  }
+  .hamburger span { width: 18px; height: 2px; background: var(--text); border-radius: 2px; transition: transform .25s ease, opacity .25s ease; }
+  .hamburger.open span:nth-child(1) { transform: translateY(6px) rotate(45deg); }
+  .hamburger.open span:nth-child(2) { opacity: 0; }
+  .hamburger.open span:nth-child(3) { transform: translateY(-6px) rotate(-45deg); }
+
+  .mobile-menu {
+    display: none; flex-direction: column; gap: 2px;
+    padding: 8px 24px 18px; border-bottom: 1px solid var(--border); background: var(--bg);
+  }
+  .mobile-menu.open { display: flex; }
+  .mobile-menu a { padding: 12px 6px; border-bottom: 1px solid var(--border); color: var(--text-muted); }
+  .mobile-menu a:last-child { border-bottom: none; }
+
+  @media (max-width: 980px) {
+    .main-nav { display: none; }
+    .hamburger { display: flex; }
+  }
+
+  /* search overlay */
+  .search-panel {
+    position: fixed; inset: 0; z-index: 300;
+    background: rgba(5,7,11,0.72); backdrop-filter: blur(6px);
+    display: none; align-items: flex-start; justify-content: center; padding: 90px 20px;
+  }
+  .search-panel.open { display: flex; }
+  .search-box {
+    width: 100%; max-width: 640px; background: var(--surface); border: 1px solid var(--border-strong);
+    border-radius: var(--radius-lg); padding: 10px; box-shadow: var(--shadow);
+  }
+  .search-box input {
+    width: 100%; background: transparent; border: none; outline: none; color: var(--text);
+    font-family: inherit; font-size: 1.05rem; padding: 14px 16px;
+  }
+  .search-hint { padding: 6px 16px 12px; color: var(--text-faint); font-size: 0.8rem; }
+
+  /* ============ HERO / FEATURED ============ */
+  .featured-section { padding: 32px 0 8px; }
+  .featured-card {
+    position: relative; border-radius: var(--radius-lg); overflow: hidden;
+    min-height: 420px; display: flex; align-items: flex-end;
+    background: var(--surface); border: 1px solid var(--border);
+  }
+  .featured-card img {
+    position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; z-index: 0;
+  }
+  .featured-overlay {
+    position: absolute; inset: 0;
+    background: linear-gradient(0deg, rgba(5,7,11,0.92) 10%, rgba(5,7,11,0.35) 60%, rgba(5,7,11,0.05) 100%);
+    z-index: 1;
+  }
+  .featured-content { position: relative; z-index: 2; padding: 36px; max-width: 720px; }
+  .featured-kicker {
+    display: inline-flex; align-items: center; gap: 8px; color: #fff;
+    background: linear-gradient(135deg, var(--barca-blue), var(--barca-red));
+    padding: 6px 14px; border-radius: 999px; font-size: 0.8rem; font-weight: 700; margin-bottom: 16px;
+  }
+  .featured-content h1 { color: #fff; font-size: clamp(1.5rem, 3.4vw, 2.3rem); line-height: 1.4; margin-bottom: 12px; }
+  .featured-content p { color: rgba(255,255,255,0.82); font-size: 1rem; max-width: 60ch; margin: 0 0 18px; }
+  .featured-meta { display: flex; align-items: center; gap: 14px; color: rgba(255,255,255,0.65); font-size: 0.82rem; margin-bottom: 18px; }
+  .featured-link {
+    display: inline-flex; align-items: center; gap: 8px; background: #fff; color: #14181f;
+    padding: 11px 22px; border-radius: 999px; font-weight: 700; font-size: 0.92rem;
+    transition: transform .2s ease;
+  }
+  .featured-link:hover { transform: translateY(-2px); }
+
+  /* ============ SECTION SHARED ============ */
+  .section { padding: 56px 0; }
+  .section-title-row { display: flex; align-items: center; justify-content: space-between; gap: 16px; margin-bottom: 26px; flex-wrap: wrap; }
+  .section-title-row h2 { font-size: clamp(1.25rem, 2.4vw, 1.6rem); }
+  .section-sub { color: var(--text-muted); font-size: 0.92rem; margin-top: 4px; }
+
+  .refresh-row { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; }
+  .updated-note { color: var(--text-faint); font-size: 0.8rem; }
+  .refresh-btn {
+    display: inline-flex; align-items: center; gap: 6px; padding: 8px 16px; border-radius: 999px;
+    border: 1px solid var(--border-strong); background: var(--surface); color: var(--text); font-size: 0.85rem;
+    transition: border-color .2s ease, transform .2s ease;
+  }
+  .refresh-btn:hover { border-color: var(--accent); transform: translateY(-1px); }
+
+  /* filters */
+  .filter-row { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 26px; }
+  .filter-chip {
+    padding: 8px 16px; border-radius: 999px; border: 1px solid var(--border-strong);
+    background: var(--surface); color: var(--text-muted); font-size: 0.85rem; transition: all .2s ease;
+  }
+  .filter-chip:hover { color: var(--text); }
+  .filter-chip.active {
+    background: linear-gradient(135deg, var(--barca-blue), var(--barca-red)); color: #fff; border-color: transparent;
+  }
+
+  /* layout: news + sidebar */
+  .news-layout { display: grid; grid-template-columns: 2.2fr 1fr; gap: 28px; align-items: start; }
+
+  .news-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; }
+
+  .news-card {
+    display: flex; flex-direction: column; background: var(--surface); border: 1px solid var(--border);
+    border-radius: var(--radius-md); overflow: hidden; transition: transform .25s ease, border-color .25s ease, box-shadow .25s ease;
+  }
+  .news-card:hover { transform: translateY(-5px); border-color: rgba(0,77,152,.4); box-shadow: var(--shadow); }
+  .news-card-img { width: 100%; aspect-ratio: 16/9; object-fit: cover; background: var(--surface-2); }
+  .news-card-body { padding: 18px; display: flex; flex-direction: column; gap: 10px; flex: 1; }
+  .news-card-tags { display: flex; align-items: center; gap: 8px; font-size: 0.74rem; }
+  .tag-source { color: var(--text-faint); }
+  .tag-category {
+    padding: 3px 10px; border-radius: 999px; background: var(--accent-soft); color: var(--accent); font-weight: 700;
+  }
+  .news-card h3 { font-size: 1rem; line-height: 1.7; }
+  .news-card p { color: var(--text-muted); font-size: 0.86rem; margin: 0; flex: 1; }
+  .news-card-footer { display: flex; align-items: center; justify-content: space-between; margin-top: auto; padding-top: 8px; font-size: 0.78rem; }
+  .news-card-time { color: var(--text-faint); }
+  .news-card-link { color: var(--barca-blue); font-weight: 700; }
+  [data-theme="light"] .news-card-link { color: #0a5bb8; }
+  .news-card-link:hover { text-decoration: underline; }
+
+  @media (max-width: 1100px) { .news-layout { grid-template-columns: 1fr; } }
+  @media (max-width: 700px) { .news-grid { grid-template-columns: 1fr; } }
+
+  /* sidebar */
+  .sidebar { display: flex; flex-direction: column; gap: 24px; position: sticky; top: 100px; }
+  .sidebar-card {
+    background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-md); padding: 20px;
+  }
+  .sidebar-card h3 { font-size: 1rem; margin-bottom: 14px; }
+  .trending-item {
+    display: flex; align-items: baseline; gap: 10px; padding: 10px 0; border-bottom: 1px solid var(--border);
+    font-size: 0.86rem;
+  }
+  .trending-item:last-child { border-bottom: none; }
+  .trending-num { color: var(--accent); font-weight: 800; flex-shrink: 0; }
+  .trending-item a { color: var(--text); }
+  .trending-item a:hover { color: var(--accent); }
+
+  .tag-cloud { display: flex; flex-wrap: wrap; gap: 8px; }
+  .hashtag {
+    padding: 6px 12px; border-radius: 999px; background: var(--surface-2); color: var(--text-muted);
+    font-size: 0.8rem; transition: color .2s ease, background .2s ease;
+  }
+  .hashtag:hover { color: var(--accent); background: var(--accent-soft); }
+
+  /* ============ TRANSFER CARDS ============ */
+  .transfer-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
+  .transfer-card {
+    background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-md);
+    padding: 20px; display: flex; flex-direction: column; gap: 10px;
+    transition: transform .25s ease, border-color .25s ease;
+  }
+  .transfer-card:hover { transform: translateY(-4px); border-color: rgba(165,0,68,.35); }
+  .transfer-status {
+    align-self: flex-start; padding: 4px 12px; border-radius: 999px; font-size: 0.74rem; font-weight: 800;
+  }
+  .transfer-status.official { background: rgba(62,207,142,0.15); color: var(--success); }
+  .transfer-status.rumor { background: var(--accent-soft); color: var(--accent); }
+  .transfer-status.close { background: rgba(0,77,152,0.15); color: #4f9dff; }
+  .transfer-card h4 { font-size: 0.98rem; line-height: 1.6; }
+  .transfer-card p { color: var(--text-muted); font-size: 0.85rem; margin: 0; }
+  .transfer-card .news-card-footer { padding-top: 4px; }
+
+  @media (max-width: 900px) { .transfer-grid { grid-template-columns: 1fr 1fr; } }
+  @media (max-width: 600px) { .transfer-grid { grid-template-columns: 1fr; } }
+
+  /* ============ MATCHES ============ */
+  .matches-list { display: flex; flex-direction: column; gap: 12px; }
+  .match-row {
+    display: flex; align-items: center; justify-content: space-between; gap: 16px; flex-wrap: wrap;
+    background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-md); padding: 18px 22px;
+  }
+  .match-teams { font-weight: 700; font-size: 0.95rem; }
+  .match-meta { display: flex; gap: 14px; color: var(--text-muted); font-size: 0.82rem; flex-wrap: wrap; }
+  .match-status { padding: 5px 13px; border-radius: 999px; font-size: 0.76rem; font-weight: 700; background: var(--surface-2); color: var(--text-faint); }
+  .matches-empty {
+    text-align: center; padding: 40px; border: 1px dashed var(--border-strong); border-radius: var(--radius-md);
+    color: var(--text-faint); font-size: 0.9rem;
+  }
+
+  /* ============ PLAYERS ============ */
+  .players-strip { display: grid; grid-template-columns: repeat(6, 1fr); gap: 14px; }
+  .player-chip {
+    background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-md);
+    padding: 18px 12px; text-align: center; transition: transform .25s ease, border-color .25s ease;
+  }
+  .player-chip:hover { transform: translateY(-4px); border-color: var(--accent); }
+  .player-avatar {
+    width: 52px; height: 52px; border-radius: 50%; margin: 0 auto 10px;
+    background: linear-gradient(135deg, var(--barca-blue), var(--barca-red));
+    display: grid; place-items: center; color: #fff; font-weight: 800; font-size: 1.1rem;
+  }
+  .player-chip h4 { font-size: 0.86rem; margin-bottom: 3px; }
+  .player-chip span { color: var(--text-faint); font-size: 0.74rem; }
+
+  @media (max-width: 900px) { .players-strip { grid-template-columns: repeat(3, 1fr); } }
+  @media (max-width: 500px) { .players-strip { grid-template-columns: repeat(2, 1fr); } }
+
+  /* ============ SKELETON / STATES ============ */
+  .skeleton-card {
+    background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-md); overflow: hidden;
+  }
+  .skeleton-img, .skeleton-line {
+    background: linear-gradient(90deg, var(--surface-2) 25%, var(--border-strong) 37%, var(--surface-2) 63%);
+    background-size: 400% 100%; animation: shimmer 1.4s ease infinite;
+  }
+  .skeleton-img { aspect-ratio: 16/9; }
+  .skeleton-line { height: 12px; border-radius: 6px; margin: 18px; }
+  .skeleton-line.short { width: 55%; }
+  @keyframes shimmer { 0% { background-position: 100% 0; } 100% { background-position: -100% 0; } }
+
+  .state-box {
+    grid-column: 1 / -1; text-align: center; padding: 46px 24px; border: 1px dashed var(--border-strong);
+    border-radius: var(--radius-md); color: var(--text-muted);
+  }
+  .state-box.error { color: var(--barca-red); }
+  .retry-btn {
+    margin-top: 16px; padding: 10px 22px; border-radius: 999px; border: none;
+    background: linear-gradient(135deg, var(--barca-blue), var(--barca-red)); color: #fff; font-weight: 700; font-size: 0.88rem;
+  }
+
+  /* ============ FOOTER ============ */
+  .site-footer { border-top: 1px solid var(--border); padding: 48px 0 28px; background: var(--bg-soft); }
+  .footer-grid { display: grid; grid-template-columns: 1.4fr 1fr 1fr; gap: 32px; margin-bottom: 32px; }
+  .footer-brand p { color: var(--text-muted); font-size: 0.9rem; margin-top: 10px; max-width: 34ch; }
+  .footer-col h4 { font-size: 0.92rem; margin-bottom: 14px; }
+  .footer-col ul { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 10px; }
+  .footer-col a { color: var(--text-muted); font-size: 0.86rem; }
+  .footer-col a:hover { color: var(--accent); }
+  .footer-bottom {
+    border-top: 1px solid var(--border); padding-top: 20px; text-align: center; color: var(--text-faint); font-size: 0.82rem;
+  }
+
+  @media (max-width: 800px) { .footer-grid { grid-template-columns: 1fr; } }
+
+  .reveal { opacity: 0; transform: translateY(16px); transition: opacity .6s ease, transform .6s ease; }
+  .reveal.in { opacity: 1; transform: translateY(0); }
+
+  .sr-only {
+    position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden;
+    clip: rect(0,0,0,0); white-space: nowrap; border: 0;
+  }
 </style>
 </head>
 <body data-theme="dark">
 
-<!-- ============ NAVBAR ============ -->
-<nav class="navbar">
-<div class="navbar-inner">
-<a href="#home" class="brand">
-<span class="brand-mark">S</span>
-<span class="brand-name">پورتفولیو</span>
-</a>
+<!-- ============ HEADER ============ -->
+<header class="site-header">
+  <div class="header-inner">
+    <a href="#home" class="logo">
+      <span class="logo-mark">⚽</span>
+      بارسا نیوز
+    </a>
 
-<ul class="nav-links">
-<li><a href="#home">خانه</a></li>
-<li><a href="#about">درباره من</a></li>
-<li><a href="#interests">علایق</a></li>
-<li><a href="#football">فوتبال</a></li>
-<li><a href="#barca-news">اخبار بارسا 📰</a></li>
-<li><a href="#tech">تکنولوژی</a></li>
-<li><a href="#projects">پروژه‌ها</a></li>
-<li><a href="#contact">تماس</a></li>
-</ul>
+    <nav aria-label="ناوبری اصلی">
+      <ul class="main-nav">
+        <li><a href="#home">خانه</a></li>
+        <li><a href="#latest">آخرین اخبار</a></li>
+        <li><a href="#transfers">نقل‌وانتقالات</a></li>
+        <li><a href="#matches">بازی‌ها</a></li>
+        <li><a href="#players">بارسلونا</a></li>
+        <li><a href="#about">درباره ما</a></li>
+      </ul>
+    </nav>
 
-<div class="nav-actions">
-<button class="theme-toggle" id="themeToggle" aria-label="تغییر حالت روشن و تاریک">
-<svg id="themeIconMoon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-<path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
-</svg>
-<svg id="themeIconSun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:none">
-<circle cx="12" cy="12" r="5"></circle>
-<line x1="12" y1="1" x2="12" y2="3"></line>
-<line x1="12" y1="21" x2="12" y2="23"></line>
-<line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
-<line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
-<line x1="1" y1="12" x2="3" y2="12"></line>
-<line x1="21" y1="12" x2="23" y2="12"></line>
-<line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
-<line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
-</svg>
-</button>
+    <div class="header-actions">
+      <button class="icon-btn" id="searchToggle" aria-label="جستجوی اخبار">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+      </button>
+      <button class="icon-btn" id="themeToggle" aria-label="تغییر حالت روشن و تاریک">
+        <svg id="themeIconMoon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
+        <svg id="themeIconSun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:none"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>
+      </button>
+      <button class="hamburger" id="hamburger" aria-label="باز کردن منو"><span></span><span></span><span></span></button>
+    </div>
+  </div>
 
-<button class="hamburger" id="hamburger" aria-label="باز کردن منو">
-<span></span>
-<span></span>
-<span></span>
-</button>
-</div>
-</div>
+  <div class="mobile-menu" id="mobileMenu">
+    <a href="#home">خانه</a>
+    <a href="#latest">آخرین اخبار</a>
+    <a href="#transfers">نقل‌وانتقالات</a>
+    <a href="#matches">بازی‌ها</a>
+    <a href="#players">بارسلونا</a>
+    <a href="#about">درباره ما</a>
+  </div>
+</header>
 
-<div class="mobile-menu" id="mobileMenu">
-<a href="#home">خانه</a>
-<a href="#about">درباره من</a>
-<a href="#interests">علایق</a>
-<a href="#football">فوتبال</a>
-<a href="#barca-news">اخبار بارسا 📰</a>
-<a href="#tech">تکنولوژی</a>
-<a href="#projects">پروژه‌ها</a>
-<a href="#contact">تماس</a>
-</div>
-</nav>
-
-<!-- ============ HERO ============ -->
-<section class="hero" id="home">
-<div class="wrap hero-grid">
-<div>
-<span class="eyebrow-tag hero-enter d1">
-<span class="dot"></span>
-در حال یادگیری و ساختن چیزهای جدید
-</span>
-
-<h1 class="hero-enter d2">
-سلام! 👋 من یک نوجوان علاقه‌مند به تکنولوژی، فوتبال و دنیای هوش مصنوعی‌ام.
-</h1>
-
-<p class="lead hero-enter d3">
-اینجا گوشه‌ای از علایق، پروژه‌ها و چیزهایی که یاد می‌گیرم را می‌بینی — از Python و AI گرفته تا Barcelona و Messi.
-</p>
-
-<div class="hero-actions hero-enter d4">
-<a href="#about" class="btn btn-primary">درباره من</a>
-<a href="#interests" class="btn btn-ghost">علایق من</a>
-</div>
+<!-- search overlay -->
+<div class="search-panel" id="searchPanel" role="dialog" aria-modal="true" aria-label="جستجوی اخبار">
+  <div class="search-box">
+    <input type="text" id="searchInput" placeholder="جستجو در اخبار بارسا... مثلاً یامال، مسی، نقل‌وانتقالات" aria-label="جستجوی اخبار بارسا">
+    <div class="search-hint">برای بستن، دکمه‌ی Esc را بزن یا بیرون از کادر کلیک کن</div>
+  </div>
 </div>
 
-<div class="hero-visual hero-enter d3">
-<svg viewBox="0 0 300 300" xmlns="http://www.w3.org/2000/svg">
-<g class="hv-float">
-<line class="hv-line" x1="70" y1="80" x2="150" y2="150"/>
-<line class="hv-line" x1="150" y1="150" x2="230" y2="70"/>
-<line class="hv-line" x1="150" y1="150" x2="90" y2="220"/>
-<line class="hv-line" x1="150" y1="150" x2="220" y2="210"/>
-<line class="hv-line" x1="70" y1="80" x2="90" y2="220"/>
-<line class="hv-line" x1="230" y1="70" x2="220" y2="210"/>
+<main id="home">
 
-<circle class="hv-node" cx="150" cy="150" r="7"/>
-<circle class="hv-node alt" cx="70" cy="80" r="5" style="animation-delay:.3s"/>
-<circle class="hv-node" cx="230" cy="70" r="5" style="animation-delay:.6s"/>
-<circle class="hv-node alt" cx="90" cy="220" r="5" style="animation-delay:.9s"/>
-<circle class="hv-node" cx="220" cy="210" r="5" style="animation-delay:1.2s"/>
-</g>
-</svg>
-</div>
-</div>
-</section>
+  <!-- ============ FEATURED ============ -->
+  <section class="featured-section">
+    <div class="wrap">
+      <div class="featured-card reveal" id="featuredCard">
+        <div class="state-box" style="position:relative; z-index:2; margin:auto;">در حال دریافت آخرین اخبار بارسلونا... ⚽</div>
+      </div>
+    </div>
+  </section>
 
-<!-- ============ ABOUT ============ -->
-<section class="section" id="about">
-<div class="wrap">
-<div class="section-head reveal">
-<span class="section-kicker">درباره من</span>
-<h2>یک نوجوان کنجکاو که دوست دارد چیزهای جدید را امتحان کند</h2>
-</div>
+  <!-- ============ LATEST NEWS + SIDEBAR ============ -->
+  <section class="section" id="latest">
+    <div class="wrap">
+      <div class="section-title-row">
+        <div>
+          <h2>آخرین اخبار بارسلونا</h2>
+          <p class="section-sub">اخبار از Mundo Deportivo، MARCA، SPORT، Jijantes و سایت رسمی FC Barcelona</p>
+        </div>
+        <div class="refresh-row">
+          <span class="updated-note" id="updatedNote">در حال بارگذاری...</span>
+          <button class="refresh-btn" id="refreshBtn" aria-label="بروزرسانی اخبار">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="23 4 23 10 17 10"></polyline><polyline points="1 20 1 14 7 14"></polyline><path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"></path></svg>
+            بروزرسانی
+          </button>
+        </div>
+      </div>
 
-<div class="about-layout">
-<div class="about-card reveal">
-<h3 style="font-size:1.1rem;margin-bottom:4px;">در یک نگاه</h3>
+      <div class="filter-row" id="filterRow">
+        <button class="filter-chip active" data-filter="همه">همه</button>
+        <button class="filter-chip" data-filter="بارسلونا">بارسلونا</button>
+        <button class="filter-chip" data-filter="نقل‌وانتقالات">نقل‌وانتقالات</button>
+        <button class="filter-chip" data-filter="بازی‌ها">بازی‌ها</button>
+        <button class="filter-chip" data-filter="بازیکنان">بازیکنان</button>
+        <button class="filter-chip" data-filter="لالیگا">لالیگا</button>
+        <button class="filter-chip" data-filter="لیگ قهرمانان">لیگ قهرمانان</button>
+      </div>
 
-<ul>
-<li><span class="ic">🍎</span> کاربر و علاقه‌مند به اکوسیستم Apple</li>
-<li><span class="ic">⚽</span> هوادار FC Barcelona</li>
-<li><span class="ic">🐐</span> بازیکن محبوب: Lionel Messi</li>
-<li><span class="ic">🐍</span> در حال یادگیری Python</li>
-<li><span class="ic">🤖</span> علاقه‌مند به هوش مصنوعی</li>
-</ul>
-</div>
+      <div class="news-layout">
+        <div class="news-grid" id="newsGrid">
+          <div class="skeleton-card"><div class="skeleton-img"></div><div class="skeleton-line"></div><div class="skeleton-line short"></div></div>
+          <div class="skeleton-card"><div class="skeleton-img"></div><div class="skeleton-line"></div><div class="skeleton-line short"></div></div>
+          <div class="skeleton-card"><div class="skeleton-img"></div><div class="skeleton-line"></div><div class="skeleton-line short"></div></div>
+          <div class="skeleton-card"><div class="skeleton-img"></div><div class="skeleton-line"></div><div class="skeleton-line short"></div></div>
+        </div>
 
-<div class="about-body reveal">
-<p>
-تکنولوژی برایم فقط یک سرگرمی نیست، یک دنیای کامل برای کشف کردنه.
-از وقتی که با محصولات <strong>Apple</strong> کار می‌کنم بیشتر به این فکر می‌کنم
-که چطور طراحی خوب می‌تونه یک تجربه رو ساده و لذت‌بخش کنه.
-</p>
+        <aside class="sidebar">
+          <div class="sidebar-card reveal">
+            <h3>داغ‌ترین اخبار</h3>
+            <div id="trendingList">
+              <p class="section-sub" style="margin:0;">در حال بارگذاری...</p>
+            </div>
+          </div>
 
-<p>
-این روزها دارم <strong>Python</strong> یاد می‌گیرم و هر بار که یک قطعه کد بالاخره درست کار می‌کنه،
-حس خیلی خوبی دارم. کنار برنامه‌نویسی، دنیای <strong>هوش مصنوعی</strong> هم برایم جذابه؛
-دوست دارم بفهمم این سیستم‌ها چطور فکر می‌کنن و چطور می‌شه باهاشون چیز جدید ساخت.
-</p>
+          <div class="sidebar-card reveal">
+            <h3>موضوعات داغ</h3>
+            <div class="tag-cloud">
+              <button class="hashtag" data-tag="بارسلونا">#بارسلونا</button>
+              <button class="hashtag" data-tag="یامال">#یامال</button>
+              <button class="hashtag" data-tag="فلیک">#فلیک</button>
+              <button class="hashtag" data-tag="نقل‌وانتقالات">#نقل_وانتقالات</button>
+              <button class="hashtag" data-tag="لالیگا">#لالیگا</button>
+              <button class="hashtag" data-tag="لیگ قهرمانان">#چمپیونزلیگ</button>
+            </div>
+          </div>
+        </aside>
+      </div>
+    </div>
+  </section>
 
-<p>
-بیرون از دنیای کامپیوتر هم یک هوادار واقعی فوتبالم — مخصوصاً <strong>Barcelona</strong>،
-و وقتی <strong>Messi</strong> بازی می‌کنه، هر کاری داشته باشم کنار می‌ذارم.
-به طور کلی آدمی‌ام که از امتحان کردن چیزهای جدید نمی‌ترسه، چه یک زبان برنامه‌نویسی باشه
-چه یک مهارت کاملاً تازه.
-</p>
-</div>
-</div>
-</div>
-</section>
+  <!-- ============ TRANSFERS ============ -->
+  <section class="section" id="transfers" style="border-top:1px solid var(--border);">
+    <div class="wrap">
+      <div class="section-title-row">
+        <div>
+          <h2>نقل‌وانتقالات</h2>
+          <p class="section-sub">آخرین اخبار مربوط به نقل‌وانتقالات بارسلونا</p>
+        </div>
+      </div>
+      <div class="transfer-grid" id="transferGrid">
+        <div class="state-box">در حال بررسی اخبار نقل‌وانتقالات...</div>
+      </div>
+    </div>
+  </section>
 
-<!-- ============ INTERESTS ============ -->
-<section class="section" id="interests">
-<div class="wrap">
-<div class="section-head reveal">
-<span class="section-kicker">علایق</span>
-<h2>چیزهایی که وقتم را پرشون می‌کنم</h2>
-<p>یک نگاه سریع به دنیای علایق من، از زمین فوتبال تا صفحه کد.</p>
-</div>
+  <!-- ============ MATCHES ============ -->
+  <section class="section" id="matches" style="border-top:1px solid var(--border);">
+    <div class="wrap">
+      <div class="section-title-row">
+        <div>
+          <h2>بازی‌های بارسلونا</h2>
+          <p class="section-sub">برنامه و وضعیت بازی‌ها (به‌زودی به داده‌ی زنده وصل می‌شود)</p>
+        </div>
+      </div>
+      <div class="matches-list" id="matchesList">
+        <div class="matches-empty">
+          این بخش هنوز به منبع رسمی نتایج/برنامه‌ی بازی‌ها وصل نشده — برای جلوگیری از نمایش اطلاعات نادرست، فعلاً چیزی نمایش داده نمی‌شود.
+          <br><br>
+          به‌محض اتصال به یک API معتبر، بازی‌های واقعی اینجا نمایش داده خواهند شد.
+        </div>
+      </div>
+    </div>
+  </section>
 
-<div class="bento reveal">
-<div class="bento-item tall">
-<div class="bento-icon">⚽</div>
-<div>
-<h3>فوتبال و Barcelona</h3>
-<p>هوادار پروپاقرص Barcelona و دنبال‌کننده هر بازی.</p>
-</div>
-</div>
+  <!-- ============ PLAYERS ============ -->
+  <section class="section" id="players" style="border-top:1px solid var(--border);">
+    <div class="wrap">
+      <div class="section-title-row">
+        <div>
+          <h2>ستاره‌های بارسا</h2>
+          <p class="section-sub">
+            چند بازیکن شناخته‌شده‌ی تیم — روی هرکدام بزن تا اخبار مرتبطش را جستجو کنی.
+            <br>
+            <small style="opacity:.7;">لیست نمونه است؛ ترکیب واقعی تیم ممکن است تغییر کرده باشد.</small>
+          </p>
+        </div>
+      </div>
+      <div class="players-strip" id="playersStrip"></div>
+    </div>
+  </section>
 
-<div class="bento-item">
-<div class="bento-icon">🍎</div>
-<div>
-<h3>Apple و تکنولوژی</h3>
-<p>علاقه به دستگاه‌ها و طراحی اکوسیستم Apple.</p>
-</div>
-</div>
-
-<div class="bento-item">
-<div class="bento-icon">🤖</div>
-<div>
-<h3>هوش مصنوعی</h3>
-<p>کنجکاو درباره اینکه AI چطور فکر و یاد می‌گیرد.</p>
-</div>
-</div>
-
-<div class="bento-item">
-<div class="bento-icon">💻</div>
-<div>
-<h3>برنامه‌نویسی</h3>
-<p>در حال یادگیری Python، قدم به قدم.</p>
-</div>
-</div>
-
-<div class="bento-item">
-<div class="bento-icon">🎮</div>
-<div>
-<h3>Gaming</h3>
-<p>از جمله Roblox و چند بازی دیگر.</p>
-</div>
-</div>
-
-<div class="bento-item">
-<div class="bento-icon">🎵</div>
-<div>
-<h3>موسیقی و تنبک</h3>
-<p>نواختن تنبک، یکی از سرگرمی‌های موردعلاقه‌ام.</p>
-</div>
-</div>
-
-<div class="bento-item">
-<div class="bento-icon">🎬</div>
-<div>
-<h3>فیلم و سریال</h3>
-<p>وقت آزادم معمولاً با یک فیلم یا سریال خوب می‌گذرد.</p>
-</div>
-</div>
-</div>
-</div>
-</section>
-
-<!-- ============ FOOTBALL ============ -->
-<section class="section football" id="football">
-<div class="wrap football-layout">
-<div class="football-copy reveal">
-<span class="section-kicker">فوتبال</span>
-<h2>Barcelona توی رگ‌های من جریان داره ⚽</h2>
-
-<p>
-هیچ حسی شبیه شب‌های بازی Barcelona نیست. از پاس‌های دقیق تا لحظه‌های جادویی Messi،
-فوتبال برایم یعنی هیجان خالص و یاد گرفتن از بهترین‌ها.
-هر بازی یک درس جدید درباره کار تیمی و پشتکار داره.
-</p>
-
-<div class="fb-tags">
-<span class="fb-chip">FC Barcelona</span>
-<span class="fb-chip">Lionel Messi 🐐</span>
-<span class="fb-chip">La Liga</span>
-</div>
-</div>
-
-<div class="football-visual reveal">
-<svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
-<circle cx="100" cy="100" r="95" fill="none" stroke="var(--border-strong)" stroke-width="2"/>
-<path d="M100 5 A95 95 0 0 1 100 195"
-fill="none"
-stroke="var(--accent)"
-stroke-width="3"
-stroke-dasharray="6 6"/>
-<path d="M100 5 A95 95 0 0 0 100 195"
-fill="none"
-stroke="var(--garnet)"
-stroke-width="3"
-stroke-dasharray="6 6"/>
-<circle cx="100" cy="100" r="46"
-fill="none"
-stroke="var(--border-strong)"
-stroke-width="2"/>
-<text x="100"
-y="112"
-text-anchor="middle"
-font-size="42"
-font-weight="900"
-fill="var(--text)"
-font-family="Vazirmatn, sans-serif">10</text>
-</svg>
-</div>
-</div>
-</section>
-
-<!-- ============ BARÇA NEWS ============ -->
-<section class="section barca-news-section" id="barca-news">
-<div class="wrap">
-<div class="barca-news-header reveal">
-<div>
-<div class="barca-news-title">
-<div class="barca-ball">🔵🔴</div>
-<div>
-<h2>آخرین اخبار بارسا</h2>
-<p class="barca-news-subtitle">
-جدیدترین خبرهای رسمی FC Barcelona
-</p>
-</div>
-</div>
-</div>
-
-<div class="barca-news-actions">
-<a
-class="barca-official-link"
-href="https://www.fcbarcelona.com/en/football/first-team/news"
-target="_blank"
-rel="noopener noreferrer"
->
-اخبار رسمی Barça ↗
-</a>
-</div>
-</div>
-
-<div class="barca-news-grid" id="barcaNewsGrid">
-<div class="barca-news-status">
-در حال دریافت آخرین اخبار بارسا... ⚽
-</div>
-</div>
-
-<div class="barca-news-updated" id="barcaNewsUpdated"></div>
-</div>
-</section>
-
-<!-- ============ TECH DASHBOARD ============ -->
-<section class="section" id="tech">
-<div class="wrap">
-<div class="section-head reveal">
-<span class="section-kicker">تکنولوژی</span>
-<h2>دنیای دیجیتالی که توش زندگی می‌کنم</h2>
-<p>
-ابزارها و موضوعاتی که هر روز باهاشون سروکار دارم یا دارم درباره‌شون یاد می‌گیرم.
-</p>
-</div>
-
-<div class="dash reveal">
-<div class="dash-card">
-<div class="dash-top">
-<div class="dash-icon">🍎</div>
-<span class="dash-status">هر روز</span>
-</div>
-<h4>Apple Ecosystem</h4>
-<p>iPad، Mac و باقی دستگاه‌های Apple، بخشی از روتین روزانه‌ام هستند.</p>
-</div>
-
-<div class="dash-card">
-<div class="dash-top">
-<div class="dash-icon">🐍</div>
-<span class="dash-status">در حال یادگیری</span>
-</div>
-<h4>Python</h4>
-<p>زبانی که دارم قدم‌به‌قدم با پروژه‌های کوچک یادش می‌گیرم.</p>
-</div>
-
-<div class="dash-card">
-<div class="dash-top">
-<div class="dash-icon">🤖</div>
-<span class="dash-status">کنجکاوی فعال</span>
-</div>
-<h4>AI</h4>
-<p>دنبال فهمیدن این هستم که مدل‌های هوش مصنوعی چطور کار می‌کنند.</p>
-</div>
-
-<div class="dash-card">
-<div class="dash-top">
-<div class="dash-icon">💻</div>
-<span class="dash-status">علاقه اصلی</span>
-</div>
-<h4>کامپیوتر</h4>
-<p>از سخت‌افزار تا نرم‌افزار، فهمیدن اینکه سیستم‌ها چطور کار می‌کنند.</p>
-</div>
-
-<div class="dash-card">
-<div class="dash-top">
-<div class="dash-icon">⌨️</div>
-<span class="dash-status">در حال ساخت</span>
-</div>
-<h4>برنامه‌نویسی</h4>
-<p>یاد گرفتن از طریق ساختن پروژه‌های واقعی، نه فقط تئوری.</p>
-</div>
-
-<div class="dash-card">
-<div class="dash-top">
-<div class="dash-icon">🛠️</div>
-<span class="dash-status">همیشه در حال کشف</span>
-</div>
-<h4>ابزارهای دیجیتال</h4>
-<p>امتحان کردن اپ‌ها و ابزارهای جدید برای بهتر کار کردن.</p>
-</div>
-</div>
-</div>
-</section>
-
-<!-- ============ LEARNING ============ -->
-<section class="section" id="learning">
-<div class="wrap">
-<div class="section-head reveal">
-<span class="section-kicker">یادگیری</span>
-<h2>چیزهایی که در حال یادگیری هستم</h2>
-</div>
-
-<div class="learning-list reveal">
-<div class="learn-row">
-<span class="learn-icon">🐍</span>
-<span class="learn-name">Python</span>
-<span class="learn-note">یادگیری از طریق تمرین و پروژه‌های کوچک</span>
-<span class="learn-badge active">در حال یادگیری</span>
-</div>
-
-<div class="learn-row">
-<span class="learn-icon">💻</span>
-<span class="learn-name">برنامه‌نویسی</span>
-<span class="learn-note">آشنایی بیشتر با منطق و ساختار کدنویسی</span>
-<span class="learn-badge active">در حال یادگیری</span>
-</div>
-
-<div class="learn-row">
-<span class="learn-icon">🗣️</span>
-<span class="learn-name">English</span>
-<span class="learn-note">تقویت زبان برای فهم بهتر منابع تکنولوژی</span>
-<span class="learn-badge started">تازه شروع کرده‌ام</span>
-</div>
-
-<div class="learn-row">
-<span class="learn-icon">💡</span>
-<span class="learn-name">تکنولوژی</span>
-<span class="learn-note">دنبال کردن اخبار و ابزارهای جدید</span>
-<span class="learn-badge active">در حال یادگیری</span>
-</div>
-
-<div class="learn-row">
-<span class="learn-icon">🤖</span>
-<span class="learn-name">هوش مصنوعی</span>
-<span class="learn-note">فهم مفاهیم پایه‌ای AI و نحوه کارکردش</span>
-<span class="learn-badge started">تازه شروع کرده‌ام</span>
-</div>
-</div>
-</div>
-</section>
-
-<!-- ============ PROJECTS ============ -->
-<section class="section" id="projects">
-<div class="wrap">
-<div class="section-head reveal">
-<span class="section-kicker">پروژه‌ها</span>
-<h2>چیزهایی که دارم می‌سازم</h2>
-<p>هنوز در ابتدای راه‌ام، ولی هر پروژه یک قدم جلوتره.</p>
-</div>
-
-<div class="projects-grid reveal">
-<div class="project-card">
-<span class="project-status building">در حال ساخت</span>
-<h4>ساخت وب‌سایت شخصی</h4>
-<p>
-همین سایتی که الان می‌بینی — جایی برای نمایش علایق و پروژه‌های آینده‌ام.
-</p>
-</div>
-
-<div class="project-card placeholder">
-<p>پروژه بعدی به‌زودی اینجا اضافه می‌شود ✦</p>
-</div>
-
-<div class="project-card placeholder">
-<p>جای خالی برای یک ایده جدید ✦</p>
-</div>
-</div>
-</div>
-</section>
-
-<!-- ============ HOBBIES ============ -->
-<section class="section" id="hobbies">
-<div class="wrap">
-<div class="section-head reveal">
-<span class="section-kicker">سرگرمی‌ها</span>
-<h2>وقتی از جلوی صفحه بلند می‌شوم</h2>
-</div>
-
-<div class="hobby-strip reveal">
-<div class="hobby-card">
-<div class="bento-icon">🎮</div>
-<h4>Roblox و بازی</h4>
-<p>ساعت‌ها بازی و کشف دنیاهای مختلف Roblox.</p>
-</div>
-
-<div class="hobby-card">
-<div class="bento-icon">⚽</div>
-<h4>فوتبال</h4>
-<p>هم بازی کردن، هم دنبال کردن Barcelona.</p>
-</div>
-
-<div class="hobby-card">
-<div class="bento-icon">🎵</div>
-<h4>تنبک</h4>
-<p>نواختن تنبک، یک سرگرمی آرامش‌بخش.</p>
-</div>
-
-<div class="hobby-card">
-<div class="bento-icon">🎬</div>
-<h4>فیلم و سریال</h4>
-<p>مارتون کردن فیلم و سریال‌های موردعلاقه‌ام.</p>
-</div>
-</div>
-</div>
-</section>
-
-<!-- ============ FAVORITES ============ -->
-<section class="section" id="favorites">
-<div class="wrap">
-<div class="section-head reveal">
-<span class="section-kicker">Favorite Things</span>
-<h2>چیزهای مورد علاقه‌ام، خلاصه شده</h2>
-</div>
-
-<div class="fav-grid reveal">
-<div class="fav-card">
-<div class="fav-emoji">⚽</div>
-<div class="fav-label">Favorite Sport</div>
-<div class="fav-value">Football</div>
-</div>
-
-<div class="fav-card">
-<div class="fav-emoji">🔵🔴</div>
-<div class="fav-label">Favorite Club</div>
-<div class="fav-value">FC Barcelona</div>
-</div>
-
-<div class="fav-card">
-<div class="fav-emoji">🐐</div>
-<div class="fav-label">Favorite Player</div>
-<div class="fav-value">Lionel Messi</div>
-</div>
-
-<div class="fav-card">
-<div class="fav-emoji">🍎</div>
-<div class="fav-label">Favorite Tech Ecosystem</div>
-<div class="fav-value">Apple</div>
-</div>
-
-<div class="fav-card">
-<div class="fav-emoji">🐍</div>
-<div class="fav-label">Learning to Love</div>
-<div class="fav-value">Python</div>
-</div>
-</div>
-</div>
-</section>
-
-<!-- ============ CONTACT ============ -->
-<section class="section" id="contact">
-<div class="wrap">
-<div class="contact-box reveal">
-<h2>بزودی راه‌های ارتباطی اضافه می‌شود</h2>
-
-<p>
-این بخش برای شبکه‌های اجتماعی و راه‌های تماس آینده در نظر گرفته شده —
-به‌زودی این‌جا تکمیل می‌شود.
-</p>
-
-<div class="social-slots">
-<div class="social-slot">＋</div>
-<div class="social-slot">＋</div>
-<div class="social-slot">＋</div>
-</div>
-</div>
-</div>
-</section>
+</main>
 
 <!-- ============ FOOTER ============ -->
-<footer>
-<div class="wrap footer-inner">
-<div class="brand">
-<span class="brand-mark" style="width:28px;height:28px;font-size:0.8rem;">S</span>
-پورتفولیو
-</div>
+<footer class="site-footer" id="about">
+  <div class="wrap">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <div class="logo"><span class="logo-mark">⚽</span> بارسا نیوز</div>
+        <p>آخرین اخبار بارسلونا، سریع و یکجا. این یک سایت مستقل و غیررسمی طرفداری است و به FC Barcelona وابسته نیست.</p>
+      </div>
 
-<span class="footer-tag">
-ساخته‌شده با علاقه به تکنولوژی 🚀
-</span>
-</div>
+      <div class="footer-col">
+        <h4>لینک‌ها</h4>
+        <ul>
+          <li><a href="#home">خانه</a></li>
+          <li><a href="#latest">آخرین اخبار</a></li>
+          <li><a href="#transfers">نقل‌وانتقالات</a></li>
+          <li><a href="#matches">بازی‌ها</a></li>
+          <li><a href="#about">درباره ما</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h4>منابع خبری</h4>
+        <ul>
+          <li><a href="https://www.mundodeportivo.com" target="_blank" rel="noopener noreferrer">Mundo Deportivo</a></li>
+          <li><a href="https://www.marca.com" target="_blank" rel="noopener noreferrer">MARCA</a></li>
+          <li><a href="https://www.sport.es" target="_blank" rel="noopener noreferrer">SPORT</a></li>
+          <li><a href="https://www.youtube.com/@GerardRomero" target="_blank" rel="noopener noreferrer">Jijantes / Gerard Romero</a></li>
+          <li><a href="https://www.fcbarcelona.com" target="_blank" rel="noopener noreferrer">FC Barcelona</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="footer-bottom">© 2026 بارسا نیوز — تمام اخبار متعلق به منابع اصلی است و صرفاً خلاصه و لینک شده‌اند.</div>
+  </div>
 </footer>
 
 <script>
-// =========================================================
-// THEME TOGGLE
-// =========================================================
-const themeToggle = document.getElementById('themeToggle');
-const moonIcon = document.getElementById('themeIconMoon');
-const sunIcon = document.getElementById('themeIconSun');
-const body = document.body;
+  // =========================================================
+  // CONFIG
+  // =========================================================
+  const NEWS_ENDPOINT = '/api/barca-news';
+  const REFRESH_INTERVAL_MS = 30 * 60 * 1000;
 
-function setTheme(theme) {
-body.setAttribute('data-theme', theme);
+  // Sample "known" current-ish players — update this list whenever the squad changes.
+  const PLAYERS = [
+    { name: 'Lamine Yamal', position: 'وینگر' },
+    { name: 'Pedri', position: 'هافبک' },
+    { name: 'Raphinha', position: 'وینگر' },
+    { name: 'Frenkie de Jong', position: 'هافبک' },
+    { name: 'Ter Stegen', position: 'دروازه‌بان' },
+    { name: 'Gavi', position: 'هافبک' }
+  ];
 
-if (theme === 'light') {
-moonIcon.style.display = 'none';
-sunIcon.style.display = 'block';
-} else {
-moonIcon.style.display = 'block';
-sunIcon.style.display = 'none';
-}
-}
+  let allNews = [];
+  let currentFilter = 'همه';
+  let currentSearch = '';
 
-let currentTheme = 'dark';
-themeToggle.addEventListener('click', () => {
-currentTheme = currentTheme === 'dark' ? 'light' : 'dark';
-setTheme(currentTheme);
-});
+  // =========================================================
+  // THEME TOGGLE
+  // =========================================================
+  const themeToggle = document.getElementById('themeToggle');
+  const moonIcon = document.getElementById('themeIconMoon');
+  const sunIcon = document.getElementById('themeIconSun');
+  const body = document.body;
 
-// =========================================================
-// MOBILE MENU
-// =========================================================
-const hamburger = document.getElementById('hamburger');
-const mobileMenu = document.getElementById('mobileMenu');
+  function applyTheme(theme) {
+    body.setAttribute('data-theme', theme);
+    moonIcon.style.display = theme === 'light' ? 'none' : 'block';
+    sunIcon.style.display = theme === 'light' ? 'block' : 'none';
+    try { localStorage.setItem('barca-news-theme', theme); } catch (e) {}
+  }
 
-hamburger.addEventListener('click', () => {
-hamburger.classList.toggle('open');
-mobileMenu.classList.toggle('open');
-});
+  let savedTheme = 'dark';
+  try { savedTheme = localStorage.getItem('barca-news-theme') || 'dark'; } catch (e) {}
+  applyTheme(savedTheme);
 
-mobileMenu.querySelectorAll('a').forEach(a => {
-a.addEventListener('click', () => {
-hamburger.classList.remove('open');
-mobileMenu.classList.remove('open');
-});
-});
+  themeToggle.addEventListener('click', () => {
+    const next = body.getAttribute('data-theme') === 'light' ? 'dark' : 'light';
+    applyTheme(next);
+  });
 
-// =========================================================
-// BARÇA NEWS
-// =========================================================
-const barcaNewsGrid = document.getElementById('barcaNewsGrid');
-const barcaNewsUpdated = document.getElementById('barcaNewsUpdated');
+  // =========================================================
+  // MOBILE MENU
+  // =========================================================
+  const hamburger = document.getElementById('hamburger');
+  const mobileMenu = document.getElementById('mobileMenu');
+  hamburger.addEventListener('click', () => {
+    hamburger.classList.toggle('open');
+    mobileMenu.classList.toggle('open');
+  });
+  mobileMenu.querySelectorAll('a').forEach(a => {
+    a.addEventListener('click', () => {
+      hamburger.classList.remove('open');
+      mobileMenu.classList.remove('open');
+    });
+  });
 
-function escapeHtml(value) {
-return String(value)
-.replace(/&/g, '&amp;')
-.replace(/</g, '&lt;')
-.replace(/>/g, '&gt;')
-.replace(/"/g, '&quot;')
-.replace(/'/g, '&#39;');
-}
+  // =========================================================
+  // SEARCH OVERLAY
+  // =========================================================
+  const searchToggle = document.getElementById('searchToggle');
+  const searchPanel = document.getElementById('searchPanel');
+  const searchInput = document.getElementById('searchInput');
 
-function formatNewsDate(dateString) {
-if (!dateString) return 'جدیدترین';
+  function openSearch() {
+    searchPanel.classList.add('open');
+    searchInput.focus();
+  }
+  function closeSearch() {
+    searchPanel.classList.remove('open');
+  }
 
-const date = new Date(dateString);
+  searchToggle.addEventListener('click', openSearch);
+  searchPanel.addEventListener('click', (e) => { if (e.target === searchPanel) closeSearch(); });
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') closeSearch();
+    if ((e.key === '/' ) && document.activeElement !== searchInput) {
+      e.preventDefault();
+      openSearch();
+    }
+  });
 
-if (Number.isNaN(date.getTime())) {
-return 'جدیدترین';
-}
+  searchInput.addEventListener('input', () => {
+    currentSearch = searchInput.value.trim();
+    renderNewsGrid();
+    document.getElementById('latest').scrollIntoView({ behavior: 'smooth', block: 'start' });
+  });
 
-return new Intl.DateTimeFormat('fa-IR', {
-year: 'numeric',
-month: 'short',
-day: 'numeric'
-}).format(date);
-}
+  document.querySelectorAll('.hashtag').forEach(tag => {
+    tag.addEventListener('click', () => {
+      currentSearch = tag.dataset.tag;
+      searchInput.value = currentSearch;
+      renderNewsGrid();
+      document.getElementById('latest').scrollIntoView({ behavior: 'smooth', block: 'start' });
+    });
+  });
 
-function renderBarcaNews(items) {
-if (!Array.isArray(items) || items.length === 0) {
-barcaNewsGrid.innerHTML = `
-<div class="barca-news-status barca-news-error">
-فعلاً خبری برای نمایش پیدا نشد. دوباره کمی بعد امتحان کن ⚽
-</div>
-`;
-return;
-}
+  // =========================================================
+  // FILTERS
+  // =========================================================
+  document.getElementById('filterRow').addEventListener('click', (e) => {
+    const btn = e.target.closest('.filter-chip');
+    if (!btn) return;
+    document.querySelectorAll('.filter-chip').forEach(c => c.classList.remove('active'));
+    btn.classList.add('active');
+    currentFilter = btn.dataset.filter;
+    renderNewsGrid();
+  });
 
-barcaNewsGrid.innerHTML = items
-.slice(0, 8)
-.map((item) => {
-const title = escapeHtml(item.title || 'خبر بارسلونا');
-const url = escapeHtml(item.url || 'https://www.fcbarcelona.com/en/football/first-team/news');
-const date = formatNewsDate(item.date || item.publishedAt);
+  // =========================================================
+  // HELPERS
+  // =========================================================
+  function escapeHtml(value) {
+    return String(value == null ? '' : value)
+      .replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')
+      .replace(/"/g, '&quot;').replace(/'/g, '&#039;');
+  }
 
-return `
-<article class="barca-news-card reveal in">
-<div class="barca-news-meta">
-<span class="barca-news-tag">FC Barcelona</span>
-<span>${date}</span>
-</div>
+  function timeAgo(dateStr) {
+    if (!dateStr) return '';
+    const date = new Date(dateStr);
+    if (Number.isNaN(date.getTime())) return '';
+    const diffMs = Date.now() - date.getTime();
+    const mins = Math.floor(diffMs / 60000);
+    if (mins < 1) return 'همین الان';
+    if (mins < 60) return `${mins} دقیقه پیش`;
+    const hours = Math.floor(mins / 60);
+    if (hours < 24) return `${hours} ساعت پیش`;
+    const days = Math.floor(hours / 24);
+    if (days < 7) return `${days} روز پیش`;
+    return new Intl.DateTimeFormat('fa-IR', { year: 'numeric', month: 'short', day: 'numeric' }).format(date);
+  }
 
-<h3>${title}</h3>
+  // Normalizes items regardless of which field names the API happens to use
+  function normalizeItem(raw) {
+    return {
+      title: raw.title || raw.originalTitle || 'خبر بدون عنوان',
+      description: raw.description || raw.summary || '',
+      url: raw.url || raw.link || '#',
+      image: raw.image || raw.thumbnail || '',
+      source: raw.source || 'منبع نامشخص',
+      category: raw.category || raw.kind || 'بارسلونا',
+      publishedAt: raw.publishedAt || raw.date || null,
+      transferStatus: raw.transferStatus || null
+    };
+  }
 
-<p>
-جدیدترین اخبار بارسا را در سایت سامیار بخوان.
-</p>
+  // =========================================================
+  // RENDER: FEATURED
+  // =========================================================
+  function renderFeatured(items) {
+    const el = document.getElementById('featuredCard');
+    if (!items.length) {
+      el.innerHTML = `<div class="state-box" style="position:relative; z-index:2; margin:auto;">فعلاً خبر برجسته‌ای برای نمایش نیست.</div>`;
+      return;
+    }
+    const top = items[0];
+    el.innerHTML = `
+      ${top.image ? `<img src="${escapeHtml(top.image)}" alt="${escapeHtml(top.title)}" loading="lazy">` : ''}
+      <div class="featured-overlay"></div>
+      <div class="featured-content">
+        <span class="featured-kicker">🔵🔴 آخرین اخبار بارسلونا</span>
+        <h1>${escapeHtml(top.title)}</h1>
+        ${top.description ? `<p>${escapeHtml(top.description)}</p>` : ''}
+        <div class="featured-meta">
+          <span>${escapeHtml(top.source)}</span>
+          <span>•</span>
+          <span>${timeAgo(top.publishedAt)}</span>
+        </div>
+        <a class="featured-link" href="${escapeHtml(top.url)}" target="_blank" rel="noopener noreferrer">مشاهده خبر ↗</a>
+      </div>
+    `;
+  }
 
-<a
-class="barca-news-link"
-href="${url}"
-target="_blank"
-rel="noopener noreferrer"
->
-ادامه خبر ↗
-</a>
-</article>
-`;
-})
-.join('');
-}
+  // =========================================================
+  // RENDER: NEWS GRID
+  // =========================================================
+  function renderNewsGrid() {
+    const grid = document.getElementById('newsGrid');
+    let list = allNews.slice(1); // exclude the featured (first) item
 
-function renderBarcaError() {
-barcaNewsGrid.innerHTML = `
-<div class="barca-news-status barca-news-error">
-دریافت اخبار بارسا در حال حاضر ممکن نیست 😕
-<br>
-<small>لینک اخبار رسمی بارسلونا همچنان در بالای این بخش در دسترس است.</small>
-</div>
-`;
-}
+    if (currentFilter !== 'همه') {
+      list = list.filter(item => item.category === currentFilter);
+    }
+    if (currentSearch) {
+      const q = currentSearch.toLowerCase();
+      list = list.filter(item =>
+        item.title.toLowerCase().includes(q) || item.description.toLowerCase().includes(q)
+      );
+    }
 
-async function loadBarcaNews() {
-try {
-const response = await fetch('/api/barca-news', {
-method: 'GET',
-cache: 'no-store',
-headers: {
-'Accept': 'application/json'
-}
-});
+    if (!list.length) {
+      grid.innerHTML = `<div class="state-box">خبری با این فیلتر/جستجو پیدا نشد.</div>`;
+      return;
+    }
 
-if (!response.ok) {
-throw new Error(`News API returned ${response.status}`);
-}
+    grid.innerHTML = list.map(item => `
+      <article class="news-card">
+        ${item.image ? `<img class="news-card-img" src="${escapeHtml(item.image)}" alt="${escapeHtml(item.title)}" loading="lazy">` : ''}
+        <div class="news-card-body">
+          <div class="news-card-tags">
+            <span class="tag-source">📰 ${escapeHtml(item.source)}</span>
+            <span class="tag-category">${escapeHtml(item.category)}</span>
+          </div>
+          <h3>${escapeHtml(item.title)}</h3>
+          ${item.description ? `<p>${escapeHtml(item.description)}</p>` : ''}
+          <div class="news-card-footer">
+            <span class="news-card-time">${timeAgo(item.publishedAt)}</span>
+            <a class="news-card-link" href="${escapeHtml(item.url)}" target="_blank" rel="noopener noreferrer" aria-label="مشاهده منبع خبر">مشاهده منبع ↗</a>
+          </div>
+        </div>
+      </article>
+    `).join('');
+  }
 
-const data = await response.json();
+  // =========================================================
+  // RENDER: TRENDING SIDEBAR
+  // =========================================================
+  function renderTrending(items) {
+    const el = document.getElementById('trendingList');
+    if (!items.length) {
+      el.innerHTML = `<p class="section-sub" style="margin:0;">خبری موجود نیست.</p>`;
+      return;
+    }
+    el.innerHTML = items.slice(0, 5).map((item, i) => `
+      <div class="trending-item">
+        <span class="trending-num">${i + 1}</span>
+        <a href="${escapeHtml(item.url)}" target="_blank" rel="noopener noreferrer">${escapeHtml(item.title)}</a>
+      </div>
+    `).join('');
+  }
 
-renderBarcaNews(data.items);
+  // =========================================================
+  // RENDER: TRANSFERS
+  // =========================================================
+  function renderTransfers(items) {
+    const el = document.getElementById('transferGrid');
+    const transferItems = items.filter(item => item.category === 'نقل‌وانتقالات');
 
-if (data.updatedAt) {
-barcaNewsUpdated.textContent =
-'آخرین بررسی: ' + formatNewsDate(data.updatedAt);
-} else {
-barcaNewsUpdated.textContent = 'اخبار از منبع رسمی FC Barcelona دریافت می‌شوند.';
-}
+    if (!transferItems.length) {
+      el.innerHTML = `<div class="state-box">در حال حاضر خبر نقل‌وانتقالاتی برای نمایش موجود نیست.</div>`;
+      return;
+    }
 
-} catch (error) {
-console.error('Barça news error:', error);
-renderBarcaError();
-barcaNewsUpdated.textContent =
-'اتصال اخبار فعلاً در دسترس نیست.';
-}
-}
+    const statusMap = { official: 'رسمی 🔵', rumor: 'شایعه 🟡', close: 'نزدیک به توافق 🟢' };
 
-// دریافت اخبار هنگام باز شدن سایت
-loadBarcaNews();
-// بررسی دوباره هر ۳۰ دقیقه
-setInterval(loadBarcaNews, 30 * 60 * 1000);
+    el.innerHTML = transferItems.map(item => `
+      <div class="transfer-card">
+        ${item.transferStatus ? `<span class="transfer-status ${item.transferStatus}">${statusMap[item.transferStatus] || item.transferStatus}</span>` : ''}
+        <h4>${escapeHtml(item.title)}</h4>
+        ${item.description ? `<p>${escapeHtml(item.description)}</p>` : ''}
+        <div class="news-card-footer">
+          <span class="news-card-time">${escapeHtml(item.source)} • ${timeAgo(item.publishedAt)}</span>
+          <a class="news-card-link" href="${escapeHtml(item.url)}" target="_blank" rel="noopener noreferrer">مشاهده منبع ↗</a>
+        </div>
+      </div>
+    `).join('');
+  }
 
-// =========================================================
-// SCROLL REVEAL
-// =========================================================
-const revealEls = document.querySelectorAll('.reveal');
-const io = new IntersectionObserver((entries) => {
-entries.forEach(entry => {
-if (entry.isIntersecting) {
-entry.target.classList.add('in');
-io.unobserve(entry.target);
-}
-});
-}, {
-threshold: 0.12
-});
+  // =========================================================
+  // RENDER: PLAYERS
+  // =========================================================
+  function renderPlayers() {
+    const el = document.getElementById('playersStrip');
+    el.innerHTML = PLAYERS.map(p => `
+      <button class="player-chip" data-player="${escapeHtml(p.name)}" aria-label="جستجوی اخبار ${escapeHtml(p.name)}">
+        <div class="player-avatar">${escapeHtml(p.name.charAt(0))}</div>
+        <h4>${escapeHtml(p.name)}</h4>
+        <span>${escapeHtml(p.position)}</span>
+      </button>
+    `).join('');
 
-revealEls.forEach(el => io.observe(el));
+    el.querySelectorAll('.player-chip').forEach(btn => {
+      btn.addEventListener('click', () => {
+        currentSearch = btn.dataset.player;
+        searchInput.value = currentSearch;
+        renderNewsGrid();
+        document.getElementById('latest').scrollIntoView({ behavior: 'smooth', block: 'start' });
+      });
+    });
+  }
+
+  // =========================================================
+  // STATES: LOADING / ERROR
+  // =========================================================
+  function showLoadingState() {
+    document.getElementById('newsGrid').innerHTML = Array(4).fill(`
+      <div class="skeleton-card"><div class="skeleton-img"></div><div class="skeleton-line"></div><div class="skeleton-line short"></div></div>
+    `).join('');
+    document.getElementById('updatedNote').textContent = 'در حال بارگذاری...';
+  }
+
+  function showErrorState() {
+    document.getElementById('newsGrid').innerHTML = `
+      <div class="state-box error">
+        دریافت اخبار با مشکل مواجه شد.
+        <br>
+        <button class="retry-btn" id="retryBtn">تلاش دوباره</button>
+      </div>
+    `;
+    document.getElementById('featuredCard').innerHTML = `
+      <div class="state-box error" style="position:relative; z-index:2; margin:auto; border:none;">دریافت اخبار با مشکل مواجه شد.</div>
+    `;
+    document.getElementById('transferGrid').innerHTML = `<div class="state-box error">دریافت اخبار نقل‌وانتقالات با مشکل مواجه شد.</div>`;
+    document.getElementById('updatedNote').textContent = 'بروزرسانی ناموفق بود.';
+
+    const retryBtn = document.getElementById('retryBtn');
+    if (retryBtn) retryBtn.addEventListener('click', loadNews);
+  }
+
+  // =========================================================
+  // FETCH
+  // =========================================================
+  async function loadNews() {
+    showLoadingState();
+    try {
+      const res = await fetch(NEWS_ENDPOINT, { cache: 'no-store', headers: { Accept: 'application/json' } });
+      if (!res.ok) throw new Error(`API returned ${res.status}`);
+      const data = await res.json();
+
+      // Accept either a raw array or a {items: [...]} wrapper
+      const rawList = Array.isArray(data) ? data : (data.items || []);
+      allNews = rawList.map(normalizeItem).sort((a, b) => {
+        const da = a.publishedAt ? new Date(a.publishedAt).getTime() : 0;
+        const db = b.publishedAt ? new Date(b.publishedAt).getTime() : 0;
+        return db - da;
+      });
+
+      if (!allNews.length) {
+        document.getElementById('featuredCard').innerHTML = `<div class="state-box" style="position:relative; z-index:2; margin:auto;">فعلاً خبری موجود نیست.</div>`;
+        document.getElementById('newsGrid').innerHTML = `<div class="state-box">فعلاً خبری موجود نیست.</div>`;
+        document.getElementById('transferGrid').innerHTML = `<div class="state-box">فعلاً خبر نقل‌وانتقالاتی موجود نیست.</div>`;
+      } else {
+        renderFeatured(allNews);
+        renderNewsGrid();
+        renderTrending(allNews);
+        renderTransfers(allNews);
+      }
+
+      document.getElementById('updatedNote').textContent = 'آخرین بروزرسانی: ' + new Intl.DateTimeFormat('fa-IR', { hour: '2-digit', minute: '2-digit' }).format(new Date());
+    } catch (err) {
+      console.error('News fetch failed:', err);
+      showErrorState();
+    }
+  }
+
+  document.getElementById('refreshBtn').addEventListener('click', loadNews);
+
+  // =========================================================
+  // INIT
+  // =========================================================
+  renderPlayers();
+  loadNews();
+  setInterval(loadNews, REFRESH_INTERVAL_MS);
+
+  // scroll reveal
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) { entry.target.classList.add('in'); io.unobserve(entry.target); }
+    });
+  }, { threshold: 0.12 });
+  document.querySelectorAll('.reveal').forEach(el => io.observe(el));
 </script>
+
 </body>
 </html>
