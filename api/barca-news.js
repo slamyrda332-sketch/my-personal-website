@@ -38,6 +38,19 @@ function extractTag(block, tag) {
   return plainMatch ? plainMatch[1] : '';
 }
 
+/*
+  Best-effort categorization based on keywords actually present in the
+  title/summary — never guessed or invented, just simple keyword matching
+  on the real published text (Spanish, since that's the source language).
+*/
+function categorizeMarcaItem(title, summary) {
+  const text = `${title} ${summary}`.toLowerCase();
+  if (/fichaje|traspaso|renovaci[oó]n|mercado/i.test(text)) return 'نقل‌وانتقالات';
+  if (/champions/i.test(text)) return 'لیگ قهرمانان';
+  if (/liga\b/i.test(text)) return 'لالیگا';
+  return 'بارسلونا';
+}
+
 async function fetchMarca() {
   try {
     const res = await fetch(MARCA_RSS, {
@@ -56,15 +69,20 @@ async function fetchMarca() {
       const link = extractTag(block, 'link').trim();
       const pubDate = extractTag(block, 'pubDate').trim();
       const imageMatch = block.match(/<media:content[^>]+url="([^"]+)"/i);
+      const isoDate = pubDate ? new Date(pubDate).toISOString() : null;
 
       return {
         title,
         summary: rawSummary,
+        description: rawSummary,
         url: link,
-        date: pubDate ? new Date(pubDate).toISOString() : null,
+        date: isoDate,
+        publishedAt: isoDate,
         image: imageMatch ? imageMatch[1] : null,
         source: 'MARCA',
-        kind: 'news'
+        kind: 'news',
+        category: categorizeMarcaItem(title, rawSummary),
+        transferStatus: null
       };
     });
   } catch (err) {
@@ -86,15 +104,21 @@ async function fetchRomero() {
       const linkMatch = block.match(/<link[^>]+rel="alternate"[^>]+href="([^"]+)"/i);
       const published = extractTag(block, 'published').trim();
       const thumbMatch = block.match(/<media:thumbnail[^>]+url="([^"]+)"/i);
+      const isoDate = published ? new Date(published).toISOString() : null;
+      const summary = 'ویدیوی گزارش/شایعه نقل و انتقالات — کانال یوتیوب Gerard Romero';
 
       return {
         title,
-        summary: 'ویدیوی گزارش/شایعه نقل و انتقالات — کانال یوتیوب Gerard Romero',
+        summary,
+        description: summary,
         url: linkMatch ? linkMatch[1] : '',
-        date: published ? new Date(published).toISOString() : null,
+        date: isoDate,
+        publishedAt: isoDate,
         image: thumbMatch ? thumbMatch[1] : null,
         source: 'Gerard Romero (YouTube)',
-        kind: 'rumor'
+        kind: 'rumor',
+        category: 'نقل‌وانتقالات',
+        transferStatus: 'rumor'
       };
     });
   } catch (err) {
@@ -139,15 +163,21 @@ module.exports = async (req, res) => {
     combined = combined.slice(0, 10);
 
     const translated = await Promise.all(
-      combined.map(async (item) => ({
-        ...item,
-        title: await translateToPersian(item.title),
-        summary:
+      combined.map(async (item) => {
+        const translatedTitle = await translateToPersian(item.title);
+        const translatedSummary =
           item.kind === 'news'
             ? await translateToPersian(item.summary)
-            : item.summary, // Romero's caption is already Persian text
-        originalTitle: item.title
-      }))
+            : item.summary; // Romero's caption is already Persian text
+
+        return {
+          ...item,
+          title: translatedTitle,
+          summary: translatedSummary,
+          description: translatedSummary,
+          originalTitle: item.title
+        };
+      })
     );
 
     res.setHeader(
